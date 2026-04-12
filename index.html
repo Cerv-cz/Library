@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vera Loader | Neon Bastion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ff9099",
+                        "tertiary-container": "#fc4563",
+                        "on-tertiary-fixed-variant": "#780021",
+                        "surface-container-lowest": "#000000",
+                        "on-error-container": "#ffb2b9",
+                        "error-container": "#a70138",
+                        "primary": "#cc97ff",
+                        "surface-bright": "#1f2b49",
+                        "secondary-fixed-dim": "#48d4f3",
+                        "surface-container-high": "#141f38",
+                        "primary-fixed-dim": "#b971ff",
+                        "tertiary": "#ff6f7e",
+                        "on-tertiary": "#490010",
+                        "on-surface-variant": "#a3aac4",
+                        "on-primary-fixed": "#000000",
+                        "surface-variant": "#192540",
+                        "primary-dim": "#9c48ea",
+                        "outline-variant": "#40485d",
+                        "on-primary-fixed-variant": "#430076",
+                        "surface-tint": "#cc97ff",
+                        "surface-dim": "#060e20",
+                        "secondary-dim": "#40ceed",
+                        "error-dim": "#d73357",
+                        "background": "#060e20",
+                        "tertiary-dim": "#ff6f7e",
+                        "surface": "#060e20",
+                        "error": "#ff6e84",
+                        "on-secondary-fixed-variant": "#005969",
+                        "on-primary-container": "#360061",
+                        "inverse-surface": "#faf8ff",
+                        "inverse-on-surface": "#4d556b",
+                        "surface-container-low": "#091328",
+                        "on-secondary-fixed": "#003a45",
+                        "secondary": "#53ddfc",
+                        "on-surface": "#dee5ff",
+                        "surface-container": "#0f1930",
+                        "outline": "#6d758c",
+                        "secondary-fixed": "#65e1ff",
+                        "on-primary": "#47007c",
+                        "tertiary-fixed-dim": "#ff7986",
+                        "on-tertiary-container": "#100001",
+                        "secondary-container": "#00687a",
+                        "inverse-primary": "#842cd3",
+                        "on-secondary-container": "#ecfaff",
+                        "on-secondary": "#004b58",
+                        "on-error": "#490013",
+                        "on-background": "#dee5ff",
+                        "surface-container-highest": "#192540",
+                        "on-tertiary-fixed": "#39000b",
+                        "primary-container": "#c284ff",
+                        "primary-fixed": "#c284ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .cyber-glass {
+            background: rgba(25, 37, 64, 0.6);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(204, 151, 255, 0.1);
+            border-left: 1px solid rgba(204, 151, 255, 0.05);
+        }
+        .text-bleed {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.03;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 min-h-screen overflow-x-hidden">
+<!-- Sidebar Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full z-50 p-4 flex flex-col w-64 border-r border-[#40485d]/15 bg-[#0f1930] dark:bg-[#0f1930] shadow-[0px_20px_40px_rgba(156,72,234,0.06)]">
+<!-- Brand Section -->
+<div class="mb-10 px-4">
+<h1 class="text-2xl font-black text-[#cc97ff] tracking-tighter font-headline">NEON BASTION</h1>
+<p class="text-[10px] tracking-widest uppercase font-medium font-label text-secondary opacity-80 mt-1">Vera Loader Core</p>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-[#53ddfc] font-bold bg-[#192540] rounded-lg mb-2 transition-all duration-300 scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] tracking-widest uppercase font-medium font-label">Library</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#dee5ff]/60 hover:text-[#dee5ff] hover:bg-[#192540] mb-2 transition-all duration-300 scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined">security</span>
+<span class="text-[10px] tracking-widest uppercase font-medium font-label">Details</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#dee5ff]/60 hover:text-[#dee5ff] hover:bg-[#192540] mb-2 transition-all duration-300 scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] tracking-widest uppercase font-medium font-label">Account</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#dee5ff]/60 hover:text-[#dee5ff] hover:bg-[#192540] mb-2 transition-all duration-300 scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] tracking-widest uppercase font-medium font-label">Settings</span>
+</a>
+</nav>
+<!-- User Profile Section -->
+<div class="mt-auto pt-6 border-t border-outline-variant/10">
+<div class="flex items-center gap-3 px-2">
+<div class="relative">
+<img alt="User Profile" class="w-10 h-10 rounded-full bg-surface-container-highest border border-primary/20" data-alt="minimalist stylized avatar of a person with cybernetic details and soft purple lighting on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0mSEwCYmshjUnF6uLHqkvbIdISsda7oRYIgv6d0gwVjayIAO-d2TDvV3pgrPkK5Kq6DkzJwTJuaUhIk5ILqkpqJRnMalu9lAwGu0SzzOtWJhjeOIOgrhLBWyiPnsgLmnj55jU1td3ML3h5Y5OcCkC3zEJ1_EC8U5HUpzcEoaqs4eCly9lGlvTMP0m8igGsVLGJZ3oZ3jwSYkW9OhMOJzjpMsZa7LsKjn4GY2pp3YiJ0ZIG6gq_JrNp2gNjSsS9HOM9aPnOCgeqei9"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-secondary rounded-full border-2 border-[#0f1930] shadow-[0_0_8px_rgba(83,221,252,0.6)]"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold font-headline text-on-surface">Vera User</span>
+<span class="text-[10px] text-primary font-label tracking-wide uppercase">Pro Member</span>
+</div>
+</div>
+<div class="mt-4 px-2">
+<span class="text-[9px] text-outline font-label uppercase tracking-[0.2em]">V1.0.4 - Build 992</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pl-64 min-h-screen">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-8 py-6 sticky top-0 z-40 bg-[#060e20]/60 backdrop-blur-xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#cc97ff]">menu</span>
+<h2 class="text-xl font-black text-[#cc97ff] uppercase italic font-headline tracking-tight">DASHBOARD</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-label text-outline uppercase tracking-tighter">System Latency</span>
+<span class="text-sm font-headline font-bold text-secondary">12ms</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/20"></div>
+<button class="material-symbols-outlined text-[#cc97ff] hover:opacity-80 transition-opacity">bolt</button>
+</div>
+</header>
+<div class="px-8 py-4 relative">
+<!-- Background Text Bleed -->
+<div class="text-bleed top-10 left-10 text-[12rem] font-black font-headline select-none">BASTION</div>
+<!-- Welcome Header -->
+<section class="mb-12 relative z-10">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-5xl font-black font-headline text-on-surface tracking-tighter mb-2">Welcome back, <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Vera User</span></h3>
+<div class="flex gap-4 items-center">
+<span class="flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full border border-secondary/10">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span>
+<span class="text-[10px] font-label uppercase tracking-widest text-secondary">Subscription: Active</span>
+</span>
+<span class="text-sm text-on-surface-variant font-body">Member since Oct 2023</span>
+</div>
+</div>
+<div class="hidden lg:flex gap-8">
+<div class="text-right">
+<p class="text-[10px] font-label uppercase tracking-[0.2em] text-outline">Total Playtime</p>
+<p class="text-2xl font-black font-headline text-on-surface">1,248 HRS</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-label uppercase tracking-[0.2em] text-outline">Library Rank</p>
+<p class="text-2xl font-black font-headline text-primary">ELITE</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured & Quick Actions Bento Grid -->
+<div class="grid grid-cols-12 gap-6 mb-12">
+<!-- Main Featured Game Card -->
+<div class="col-span-12 lg:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container-low shadow-[0px_20px_40px_rgba(156,72,234,0.06)] h-[400px]">
+<div class="absolute inset-0 z-0">
+<img alt="Counter Strike 2 Action" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="cinematic shot of high-tech tactical soldiers in a futuristic urban setting with neon blue and purple atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwJHf0Xe079xX6sdW-c5lRFGqxT5C1K14fpJJ44r4HunNe-sUsLKKFGTyzL3s7k3QS7K0iQdUw7Wn-k27w28pndjWF00F_LovMc19hZBrGUjp0jveKbl6esztDdVGSIhOOK1q5DIibWj5DCF6mgibUEnXMw9e0KcsA0EBS2lo_jPdGv4UA3umAw-VbGBe4K155gE34qryxyewkgINgoHJqoQLU1Y3iUR8b4hp9Og3yIAERorm7o4wFTeI1xhuO3IU3d1J3-OHLP4Fo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-surface-dim/40 to-transparent"></div>
+</div>
+<div class="absolute bottom-0 left-0 p-8 z-10 w-full flex justify-between items-end">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 bg-primary text-on-primary text-[10px] font-bold font-label uppercase tracking-widest rounded">Featured</span>
+<span class="text-secondary text-[10px] font-bold font-label uppercase tracking-widest">Version 2.4.1</span>
+</div>
+<h4 class="text-4xl font-black font-headline text-on-surface mb-2 tracking-tighter">COUNTER-STRIKE 2</h4>
+<p class="text-on-surface-variant text-sm max-w-md font-body leading-relaxed">Experience the next evolution of tactical combat. Vera's optimized engine ensures zero latency and peak performance on all high-tick servers.</p>
+</div>
+<div class="flex flex-col items-end gap-4">
+<button class="bg-gradient-to-r from-primary to-primary-dim px-8 py-3 rounded text-on-primary font-black font-headline tracking-widest hover:shadow-[0_0_20px_rgba(204,151,255,0.4)] transition-all active:scale-95">LAUNCH SYSTEM</button>
+<span class="text-[10px] font-label text-outline uppercase tracking-widest">Last played: 2 hours ago</span>
+</div>
+</div>
+</div>
+<!-- Secondary Quick Action Cards -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<!-- Session Stats Card -->
+<div class="cyber-glass p-6 rounded-xl flex-1 border border-outline-variant/10">
+<h5 class="text-[10px] font-label uppercase tracking-[0.2em] text-outline mb-6">Current Session Health</h5>
+<div class="space-y-6">
+<div class="flex justify-between items-center">
+<span class="text-sm font-body text-on-surface-variant">Frame Timing</span>
+<span class="text-sm font-headline font-bold text-secondary">0.4ms</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary to-primary w-[92%]"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm font-body text-on-surface-variant">Network Buffer</span>
+<span class="text-sm font-headline font-bold text-primary">Stable</span>
+</div>
+</div>
+<div class="mt-8">
+<button class="w-full py-2 border border-outline text-[10px] font-label uppercase tracking-[0.2em] hover:bg-secondary/10 hover:text-secondary transition-all">Optimize OS</button>
+</div>
+</div>
+<!-- Community/Support Card -->
+<div class="bg-surface-container-highest p-6 rounded-xl border border-outline-variant/5">
+<div class="flex items-center gap-4 mb-4">
+<div class="p-2 bg-primary/10 rounded">
+<span class="material-symbols-outlined text-primary">hub</span>
+</div>
+<div>
+<h6 class="text-sm font-bold font-headline">COMMUNITY HUB</h6>
+<p class="text-[10px] text-outline uppercase tracking-wider">42,104 Online</p>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">Join the Discord for exclusive access to beta modules and high-tier configurations.</p>
+<a class="text-xs text-secondary font-bold flex items-center gap-1 hover:gap-2 transition-all" href="#">CONNECT NOW <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+</div>
+</div>
+<!-- News & Updates Section -->
+<section class="mb-12">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-xl font-black font-headline text-on-surface tracking-tighter">NETWORK DISPATCH</h4>
+<a class="text-[10px] font-label uppercase tracking-widest text-outline hover:text-on-surface transition-colors" href="#">Archive View</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- News Item 1 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-lg aspect-video mb-4 bg-surface-container-low">
+<img alt="Tech News" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="overhead shot of premium gaming hardware components with moody neon backlighting in a dark clean aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTI7m7UEsZ4MzDCbNGAqSJSKb573MTv5EjAYx8_8ui3knX0UQCJPW7evnl5dFWcqfly97heXQHBkn1mbx-DMcXtMPKZEdg8-F-mZ-AvCAgOUfrTwPUW6sCTlmCGx1DiZ76urLYNukGBN0e59kBozL96qEhyjYrgq9kFXrDimyCGOdWJO9D0fAiaxnppQS6aDsy8GRI4MkfSJ0eVMmqIxMqibLPU-NwqayERJgxrVj6z5uJZFq3AnLZMx0O5ZvN3faztU5pssLd6hB5"/>
+</div>
+<span class="text-[9px] font-label uppercase tracking-[0.2em] text-primary mb-2 block">Patch Notes - Oct 12</span>
+<h5 class="text-md font-bold font-headline group-hover:text-secondary transition-colors">Vera Kernel v4.2 Release: Improved RAM Spoofing</h5>
+<p class="text-xs text-on-surface-variant mt-2 line-clamp-2">Our latest update significantly reduces background memory footprint by 14% while increasing...</p>
+</div>
+<!-- News Item 2 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-lg aspect-video mb-4 bg-surface-container-low">
+<img alt="Hardware News" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="macro close-up of computer circuitry and glowing data pathways with electric cyan light pulses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-D9lxDlXZ4pbDHSqSMyvCHdmqE1krCqmXoZE4QQeGHlYRmyzKdWP4jBZpypRQT-7tjd-fIX_n0KntNAc_HarZA2HKJWKgVygAcfmgwTnuLL-t6L3RUY33eq48D4v11URX6wS_YrMiAuBNPePeWjCul7UA0yepIWLOpy6NHrkVI6RZf_Jts4QKfVkqW_IiENi3_SN3ncodQu1kBbfaxpBcZrrAjpyPkIDbpMpdnpM14jtUs1E-rWfvosV4g2zQ31ZTC1naG3Ntm1Rv"/>
+</div>
+<span class="text-[9px] font-label uppercase tracking-[0.2em] text-secondary mb-2 block">Security Brief - Oct 10</span>
+<h5 class="text-md font-bold font-headline group-hover:text-secondary transition-colors">Anti-Cheat Evasion Protocol 7X Active</h5>
+<p class="text-xs text-on-surface-variant mt-2 line-clamp-2">Implementing new hypervisor-level masking for all Tier 1 protected modules. Status: Secure.</p>
+</div>
+<!-- News Item 3 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-lg aspect-video mb-4 bg-surface-container-low">
+<img alt="Cyber City" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="futuristic cybernetic city skyline at night with dense glowing vertical light structures and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeCGJvNkHLNIhJk7TNYG_qeofDkRudgzIqP5Eypqb3SwHqDSabnRwzKRRcL9KufzeYlypFxvwnbzTUlG5rgqk27451OTYv1zv2OIqM1MMoUa3zFBCCgjb01CG8cgSIvnIk4a_f4tpTZQY6UU87k9JohKMIZb2ARmVtNUKGZ3GD0Oy4uYaNZZK2TOzlRufpt4_1_hiMpo3fyb18rDHpOIR32x8TN2zrRwKwnd0XoqGkl9qN5tPLYci2uvIoAe6If4s0a9_mpVGkKvex"/>
+</div>
+<span class="text-[9px] font-label uppercase tracking-[0.2em] text-tertiary mb-2 block">Event - Starting Oct 15</span>
+<h5 class="text-md font-bold font-headline group-hover:text-secondary transition-colors">Double XP Weekend: Halloween Protocol</h5>
+<p class="text-xs text-on-surface-variant mt-2 line-clamp-2">Gain double loyalty points on all session injections. Limited time skins available in store.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer / Bottom Data Scrim -->
+<footer class="mt-12 px-8 py-6 border-t border-outline-variant/10 bg-surface-container-lowest/20 backdrop-blur-sm">
+<div class="flex justify-between items-center">
+<div class="flex gap-8">
+<div class="flex flex-col">
+<span class="text-[9px] text-outline uppercase tracking-widest mb-1">Global Servers</span>
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse"></span>
+<span class="text-xs font-headline font-bold">ONLINE</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-[9px] text-outline uppercase tracking-widest mb-1">Service Hash</span>
+<span class="text-[10px] font-label text-on-surface-variant truncate w-32">0x7F2B...E912</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[9px] text-outline uppercase tracking-widest mb-1">Session Token</span>
+<span class="text-[10px] font-label text-on-surface-variant">ACTIVE</span>
+</div>
+</div>
+<div class="text-[10px] font-label text-outline uppercase tracking-widest">
+                    © 2024 VERA TECHNOLOGIES. ALL RIGHTS RESERVED.
+                </div>
+</div>
+</footer>
+</main>
+<!-- Floating Background Elements for Depth -->
+<div class="fixed top-0 right-0 w-1/3 h-1/2 bg-primary/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none -z-10"></div>
+<div class="fixed bottom-0 left-0 w-1/4 h-1/3 bg-secondary/5 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none -z-10"></div>
+</body></html>
