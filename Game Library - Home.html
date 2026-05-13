@@ -1,0 +1,1342 @@
+<!DOCTYPE html><html lang="en"><head><base href="https://forge.moonchild.ai/site/3b461d0311ec70d69ebba12ea58a9f2a97db3dd81a1c27eb3a4a507f1a98c80e/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameWiki — Game Encyclopedia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0F0F13;
+      --card: #1A1A24;
+      --sidebar: #13131C;
+      --accent: #7C3AED;
+      --accent-light: #9D5FF5;
+      --accent-glow: rgba(124, 58, 237, 0.35);
+      --amber: #F59E0B;
+      --amber-glow: rgba(245, 158, 11, 0.3);
+      --text-primary: #FFFFFF;
+      --text-secondary: #A0A0B8;
+      --border: rgba(255,255,255,0.06);
+      --card-hover: #1F1F2E;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      width: 1728px;
+      height: 1117px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── LAYOUT ─── */
+    .app-shell {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      background: var(--sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      height: 100%;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 24px 24px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--accent), #5B21B6);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 0 16px var(--accent-glow);
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #fff 60%, var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sidebar-nav {
+      padding: 20px 14px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .nav-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      padding: 0 10px 10px;
+      margin-top: 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+      margin-bottom: 2px;
+      position: relative;
+    }
+
+    .nav-item:hover {
+      background: rgba(124, 58, 237, 0.12);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: rgba(124, 58, 237, 0.18);
+      color: var(--text-primary);
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+
+    .nav-item.active .nav-icon {
+      color: var(--accent-light);
+    }
+
+    .nav-icon {
+      width: 18px;
+      text-align: center;
+      font-size: 15px;
+      transition: color 0.18s ease;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+
+    .sidebar-footer {
+      padding: 16px 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: rgba(255,255,255,0.04);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .user-card:hover {
+      background: rgba(255,255,255,0.07);
+    }
+
+    .user-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED, #F59E0B);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .user-info .user-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .user-info .user-role {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .user-card .fa-chevron-right {
+      margin-left: auto;
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 32px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(15, 15, 19, 0.85);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .topbar-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .topbar-subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 1px;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      height: 42px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0 18px 0 44px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-bar input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .search-bar input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .topbar-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .topbar-btn:hover {
+      background: rgba(124,58,237,0.15);
+      color: var(--accent-light);
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .topbar-btn.notif {
+      position: relative;
+    }
+
+    .notif-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 7px;
+      height: 7px;
+      background: var(--amber);
+      border-radius: 50%;
+      border: 1.5px solid var(--bg);
+    }
+
+    /* ─── SCROLL AREA ─── */
+    .content-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 28px 32px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(124,58,237,0.3) transparent;
+    }
+
+    .content-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .content-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .content-scroll::-webkit-scrollbar-thumb {
+      background: rgba(124,58,237,0.3);
+      border-radius: 3px;
+    }
+
+    /* ─── HERO BANNER ─── */
+    .hero-banner {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      height: 320px;
+      margin-bottom: 32px;
+      cursor: pointer;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .hero-banner:hover .hero-bg {
+      transform: scale(1.03);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(15,15,19,0.96) 0%, rgba(15,15,19,0.8) 45%, rgba(15,15,19,0.15) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 44px;
+      max-width: 560px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(124,58,237,0.25);
+      border: 1px solid rgba(124,58,237,0.45);
+      color: #C4B5FD;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .hero-title {
+      font-size: 44px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .hero-year {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .hero-dot {
+      width: 4px;
+      height: 4px;
+      background: var(--text-secondary);
+      border-radius: 50%;
+    }
+
+    .hero-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .genre-tag {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .genre-tag:hover {
+      background: rgba(124,58,237,0.2);
+      border-color: rgba(124,58,237,0.4);
+      color: #C4B5FD;
+    }
+
+    .genre-tag.accent {
+      background: rgba(124,58,237,0.22);
+      border-color: rgba(124,58,237,0.5);
+      color: #C4B5FD;
+    }
+
+    .stars-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 2px;
+    }
+
+    .stars .fa-star {
+      font-size: 15px;
+      color: var(--amber);
+      filter: drop-shadow(0 0 4px var(--amber-glow));
+    }
+
+    .stars .fa-star-half-stroke {
+      font-size: 15px;
+      color: var(--amber);
+    }
+
+    .stars .fa-star.empty {
+      color: rgba(255,255,255,0.15);
+      filter: none;
+    }
+
+    .rating-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--amber);
+    }
+
+    .rating-count {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 11px 24px;
+      border-radius: 9px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+      box-shadow: 0 4px 18px rgba(124,58,237,0.45);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      box-shadow: 0 6px 24px rgba(124,58,237,0.6);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.07);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 22px;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+
+    .hero-side-stats {
+      position: absolute;
+      right: 44px;
+      bottom: 36px;
+      z-index: 2;
+      display: flex;
+      gap: 20px;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* ─── SECTION HEADER ─── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .see-all {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-light);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.18s, gap 0.18s;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .see-all:hover {
+      color: #fff;
+      gap: 8px;
+    }
+
+    /* ─── GAME CARDS ─── */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .game-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+      position: relative;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow);
+      border-color: rgba(124,58,237,0.35);
+      background: var(--card-hover);
+    }
+
+    .game-card-cover {
+      width: 100%;
+      height: 178px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .game-card:hover .game-card-cover {
+      transform: scale(1.04);
+    }
+
+    .game-card-cover-placeholder {
+      width: 100%;
+      height: 178px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .game-card:hover .game-card-overlay {
+      opacity: 1;
+    }
+
+    .play-btn {
+      width: 44px;
+      height: 44px;
+      background: rgba(124,58,237,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 15px;
+      box-shadow: 0 0 20px rgba(124,58,237,0.6);
+    }
+
+    .game-card-body {
+      padding: 13px 14px 14px;
+    }
+
+    .game-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 7px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.2px;
+    }
+
+    .game-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .game-card-tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    .tag-rpg { background: rgba(124,58,237,0.2); color: #C4B5FD; }
+    .tag-action { background: rgba(239,68,68,0.18); color: #FCA5A5; }
+    .tag-strategy { background: rgba(16,185,129,0.18); color: #6EE7B7; }
+    .tag-fps { background: rgba(245,158,11,0.2); color: #FDE68A; }
+    .tag-adventure { background: rgba(59,130,246,0.2); color: #93C5FD; }
+    .tag-sports { background: rgba(20,184,166,0.18); color: #99F6E4; }
+    .tag-horror { background: rgba(156,163,175,0.15); color: #D1D5DB; }
+    .tag-puzzle { background: rgba(236,72,153,0.18); color: #F9A8D4; }
+
+    .game-card-stars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .game-card-stars .fa-star {
+      font-size: 11px;
+      color: var(--amber);
+    }
+
+    .game-card-stars .fa-star.empty {
+      color: rgba(255,255,255,0.12);
+    }
+
+    .game-card-rating {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--amber);
+      margin-left: 3px;
+    }
+
+    /* ─── GENRE CHIPS ─── */
+    .genre-section {
+      margin-bottom: 30px;
+    }
+
+    .genre-chips {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .genre-chip {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 22px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.18s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .genre-chip:hover {
+      background: rgba(124,58,237,0.15);
+      border-color: rgba(124,58,237,0.4);
+      box-shadow: 0 4px 16px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .genre-chip.active {
+      background: rgba(124,58,237,0.22);
+      border-color: rgba(124,58,237,0.6);
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .genre-chip-icon {
+      font-size: 18px;
+    }
+
+    .genre-chip-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .genre-chip-count {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-left: 4px;
+    }
+
+    /* ─── RECENTLY VIEWED ─── */
+    .recent-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 14px;
+    }
+
+    .recent-card {
+      background: var(--card);
+      border-radius: 9px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .recent-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 14px var(--accent-glow);
+      border-color: rgba(124,58,237,0.3);
+    }
+
+    .recent-thumb {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .recent-thumb-placeholder {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .recent-info {
+      padding: 9px 10px;
+    }
+
+    .recent-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 3px;
+    }
+
+    .recent-time {
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+
+    /* ─── DIVIDER ─── */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 28px 0;
+    }
+
+    /* Scrollbar for content */
+    .content-scroll {
+      scrollbar-gutter: stable;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">
+          <i class="fas fa-gamepad"></i>
+        </div>
+        <span class="logo-text">GameWiki</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Menu</div>
+
+        <div class="nav-item active">
+          <span class="nav-icon"><i class="fas fa-house"></i></span>
+          <span>Home</span>
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon"><i class="fas fa-magnifying-glass"></i></span>
+          <span>Browse Games</span>
+          <span class="nav-badge">4.2K</span>
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon"><i class="fas fa-layer-group"></i></span>
+          <span>Categories</span>
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon"><i class="fas fa-heart"></i></span>
+          <span>Favorites</span>
+          <span class="nav-badge">24</span>
+        </div>
+
+        <div class="nav-section-label" style="margin-top:18px;">History</div>
+
+        <div class="nav-item">
+          <span class="nav-icon"><i class="fas fa-clock-rotate-left"></i></span>
+          <span>Recently Viewed</span>
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon"><i class="fas fa-bookmark"></i></span>
+          <span>My Lists</span>
+        </div>
+
+        <div class="nav-section-label" style="margin-top:18px;">System</div>
+
+        <div class="nav-item">
+          <span class="nav-icon"><i class="fas fa-gear"></i></span>
+          <span>Settings</span>
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon"><i class="fas fa-circle-question"></i></span>
+          <span>Help &amp; Support</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <div class="user-avatar">JD</div>
+          <div class="user-info">
+            <div class="user-name">Jake D.</div>
+            <div class="user-role">Pro Member</div>
+          </div>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ─── MAIN ─── -->
+    <div class="main-content">
+
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="topbar-title">Discover Games</div>
+          <div class="topbar-subtitle">Over 4,200 titles catalogued</div>
+        </div>
+
+        <div class="search-bar">
+          <i class="fas fa-magnifying-glass search-icon"></i>
+          <input type="text" placeholder="Search games, genres, publishers...">
+        </div>
+
+        <div class="topbar-actions">
+          <button class="topbar-btn notif">
+            <i class="fas fa-bell"></i>
+            <span class="notif-dot"></span>
+          </button>
+          <button class="topbar-btn">
+            <i class="fas fa-sliders"></i>
+          </button>
+          <button class="topbar-btn">
+            <i class="fas fa-grip"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- CONTENT SCROLL -->
+      <div class="content-scroll">
+
+        <!-- HERO BANNER -->
+        <div class="hero-banner">
+          <img class="hero-bg" src="https://storage.googleapis.com/forge-sites/80a71127e7ff92eb61e8d722dfb4ce6acbc42b2b6a8c480b3ace8cb904d95742.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103741Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=9d5d8630e7282f538cd9fb682ce9fb60b4bac4576bb726c2a318324d238b3babdfed8cb8132a3b52047be104ce5ae41af01be39ee0835477f56964a09b715a741072689bea0077e11d8e81fe5db7c0b34ec9c85d13e8877582bf4e6495c85aa7876fc73ac75a73ca5acc76d4dd19fc100b11f07e827a2fb63e4ed5039133d90cebe59d7ac2ffe78d48afc7da0bf2f805ecbd504163142aa4d49ff5e6d9d2f165ac534dfb539a52303f227d645366d7daa9b3d7c985bccc4ebf4cfdad219f2cc6f86e6fccf8b4f2a7841eb8030d53aec60fdf588540b5ef096f6b74471a669525890fb8656edbee349f6422138029db29a787c03f06509a976bfa5457fba892fb" alt="The Witcher 3 Wild Hunt atmospheric landscape showing Geralt overlooking a vast mountainous wilderness at dusk with golden light and moody dark sky" width="1488" height="320">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <div class="hero-badge">
+              <i class="fas fa-fire" style="font-size:10px;"></i>
+              Game of the Week
+            </div>
+            <h1 class="hero-title">The Witcher 3:<br>Wild Hunt</h1>
+            <div class="hero-meta">
+              <span class="hero-year">2015</span>
+              <span class="hero-dot"></span>
+              <span class="hero-year">CD Projekt Red</span>
+              <span class="hero-dot"></span>
+              <span class="hero-year">PC · PS5 · Xbox · Switch</span>
+            </div>
+            <div class="hero-tags">
+              <span class="genre-tag accent">RPG</span>
+              <span class="genre-tag">Open World</span>
+              <span class="genre-tag">Fantasy</span>
+              <span class="genre-tag">Action</span>
+            </div>
+            <div class="stars-row">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-stroke"></i>
+              </div>
+              <span class="rating-text">9.8</span>
+              <span class="rating-count">/ 10 · 48,293 reviews</span>
+            </div>
+            <div class="hero-actions">
+              <button class="btn-primary">
+                <i class="fas fa-eye"></i>
+                View Details
+              </button>
+              <button class="btn-secondary">
+                <i class="fas fa-heart"></i>
+                Add to Favorites
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-side-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-value">200+</div>
+              <div class="hero-stat-label">Hours of Play</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">550+</div>
+              <div class="hero-stat-label">Quests</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">30M+</div>
+              <div class="hero-stat-label">Copies Sold</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POPULAR GAMES -->
+        <div class="section-header">
+          <div>
+            <div class="section-title">Popular Games</div>
+            <div class="section-subtitle">Top rated titles right now</div>
+          </div>
+          <button class="see-all">See all <i class="fas fa-arrow-right" style="font-size:11px;"></i></button>
+        </div>
+
+        <div class="games-grid">
+
+          <!-- Card 1 -->
+          <div class="game-card">
+            <div style="position:relative; overflow:hidden;">
+              <img class="game-card-cover" src="https://storage.googleapis.com/forge-sites/94bebdaa7dd5ab457ddcde221b2438dcbf29131ccc47dc792510c4e5257c6385.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103741Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b87aa2c8fc9adc278b55db64089fdc24b8ecf21cd830f3b1a6529dc192440c75ffe5bf3667a270e05f05b140f1ca76c07a7c493f93fed5462f8e68224613c257d089f1c74ac22023af8ff5dab8e97af4ef85eee6dd5fe49e86a2d0b529b390d02d27ade541a5074fc63376a9999681b961280be1197af002b16c90c36b1a6c9bb2988d5c068cafaff473e7e67d4bbc3ab31f8e153e03e979a6ad7fb84dd11a70be2891c5eb181929b05cba1e0ca6a0eee27bf548766cbf2460014e3dee8bc18505a4aa8943219ea778e65eb002dc3d4fde5ebb9b2ae73e64a375c6df1e5b483e0895b9727f92f68d497fcd59c07256ef1431df02d65f2f4812cbc2b0bd501ce4" alt="Elden Ring game cover art showing a dark and epic fantasy landscape with a crumbling golden ring in the stormy sky" width="280" height="178">
+              <div class="game-card-overlay">
+                <div class="play-btn"><i class="fas fa-play" style="margin-left:2px;"></i></div>
+              </div>
+            </div>
+            <div class="game-card-body">
+              <div class="game-card-title">Elden Ring</div>
+              <div class="game-card-footer">
+                <span class="game-card-tag tag-rpg">RPG</span>
+                <div class="game-card-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span class="game-card-rating">9.7</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="game-card">
+            <div style="position:relative; overflow:hidden;">
+              <img class="game-card-cover" src="https://storage.googleapis.com/forge-sites/3096a4c5afa173d18b5e884a54eb593033241e62f36be550682e97691753f80d.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103741Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=742f2f487fef38b7ce849d22f508188446713f8d8ff56dada71dfba2cd23037ce1b5ad1a6828e8afe65f7cf5ca487c8b64174888c471b28a6b3195b01c4ced500f4b9ace5efc086ac884cf7ddb5cf9f91392c9c25aa52b34e07f347a754e7cd72730e8a9c2041eca72ef5225e0142cc374ca409575e8ff5d39967a0c5f9c8eee0b5c7354c8b7c82f7bdc4ff3ecda1fe5206f285bc7631b40f8514b8bf604ac36a157f8fb442c6afd6f46a94dc767bad9f11d417a0c80ecf04a9bccc206ee9ecb16bb11b12735d44c051967fe6ed34fb0798e1304b9fc348346f1782cc4cd071734562d9ff0b0e4686b4a3eb9e0098f7f15d523dc1f9c90294fa1c4015b41ba30" alt="Cyberpunk 2077 game cover art showing a neon-lit futuristic city skyline at night with a cool blue and pink color palette" width="280" height="178">
+              <div class="game-card-overlay">
+                <div class="play-btn"><i class="fas fa-play" style="margin-left:2px;"></i></div>
+              </div>
+            </div>
+            <div class="game-card-body">
+              <div class="game-card-title">Cyberpunk 2077</div>
+              <div class="game-card-footer">
+                <span class="game-card-tag tag-action">Action</span>
+                <div class="game-card-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star empty"></i>
+                  <span class="game-card-rating">8.5</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="game-card">
+            <div style="position:relative; overflow:hidden;">
+              <img class="game-card-cover" src="https://storage.googleapis.com/forge-sites/111ab0b77e2b7924dad2bb21dd12eca716efbee7552a1ab503070c888a4a7607.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103742Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b167dfee202c2f02339518d8d1f090c633c16455d0f0e4ac8f62ac681352791a04d003f43539c5a849149600961b2f2f2edc2209179b6f86b1a8942849e4032d0d9947281a32900becfafb762545dcc0caff154ae136a1eb171880736bef8aafee8bea9884cad64ba128c3134335eaba909032cd9feb9527747324c23bf8c71c30a38c40673a27977c77d04758f5a0e9149669c350a2ce565d5918ddcbbc6f4c76374122b204cd49db2a2bff5c9aaf4e1ba7845f0da04edce77b73e7c3d19face0a0b04419fecee04c7133c5bf5b8dc42181df077d5324cca5a673492583d5322ba4f96acd5a5e1ed8a4211e2d9ab25110abd50771b1cb95123885cc895da170" alt="Civilization 6 game cover art showing a colorful illustrated world map with ancient and modern civilization icons" width="280" height="178">
+              <div class="game-card-overlay">
+                <div class="play-btn"><i class="fas fa-play" style="margin-left:2px;"></i></div>
+              </div>
+            </div>
+            <div class="game-card-body">
+              <div class="game-card-title">Civilization VI</div>
+              <div class="game-card-footer">
+                <span class="game-card-tag tag-strategy">Strategy</span>
+                <div class="game-card-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star empty"></i>
+                  <span class="game-card-rating">9.0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="game-card">
+            <div style="position:relative; overflow:hidden;">
+              <img class="game-card-cover" src="https://storage.googleapis.com/forge-sites/ad8e64620e8880e7f0bfb87be5b323101a069e716ae86ba2f25aa46d9fd40690.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103742Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=a572fa5f29659865e376d7778ca5dfd282e0bc34bfa0c8b31bea3e4a512f31206fc1e3cbda539eac77a27b1735b39cfa6329f73440f3dcf4ac5810646f8eb1a8453264bcc8227c17d63b8ec7424fed68ba45045aced6c4959f6d8db0e6121ec69179e569559448cea6dede843364b3b75490d5d1453f18ce296597654c9a52c51355fabba330faae7bbd7eccddb72c08739192c223e3ace7722b38709536b6d9b1bb5879d3f7897d0ce8830c7b5ac53598ab446619366c891bbd1561b44a8c4bd250fb8b9c1f613a4a3227a80ed62e5c1152693a14045a935235401daf8a501f515324cd6a629647fa93ec0ff45e5d6ab090763330cea49e1fb25e98a4513dff" alt="DOOM Eternal game cover art showing the menacing Doom Slayer in heavy orange armor against a hellish red and fiery backdrop" width="280" height="178">
+              <div class="game-card-overlay">
+                <div class="play-btn"><i class="fas fa-play" style="margin-left:2px;"></i></div>
+              </div>
+            </div>
+            <div class="game-card-body">
+              <div class="game-card-title">DOOM Eternal</div>
+              <div class="game-card-footer">
+                <span class="game-card-tag tag-fps">FPS</span>
+                <div class="game-card-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span class="game-card-rating">9.4</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="game-card">
+            <div style="position:relative; overflow:hidden;">
+              <img class="game-card-cover" src="https://storage.googleapis.com/forge-sites/6d205a3f20eb22f518798f3477f90cdb98aaf67b379c97702f2ad57d7a16f0ba.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103742Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=092d103fa1a4913c20e2889f0dfa7efee6ace3174c2fb0c56d02e974cdc62963c98723f0ca6d7abbab17b88a46052d94962313ac97d7449a84326576ce96cc9f01d36062689eb2ced297a3f7cdc4487f3fa0e54e0e7b53c08a9d8e65b03ce152f3736cf98088c6a78d5eb55e202888638f36834c940c9caa1fe8f182b9d4f6f7ca3d521a357135b15d85d0d497cbaf4904f994f16505e7c2d8cea766d01ddda2b41a11e9465a8af0be5e33ee26e5a30e7d6fe3a38a626dd1cdd50f82b8b9f246b71393d3ea8cb6283b5cc2b3b8ba5293ac2edb70428a63fe79162d0ac9f457699a8c75d1886639f9fcba7de9186b2f87f7d42ddd7b6299f2435e0d82fa6041c4" alt="Red Dead Redemption 2 game cover art showing a cowboy on horseback silhouetted against a dramatic orange and red sunset in the American West" width="280" height="178">
+              <div class="game-card-overlay">
+                <div class="play-btn"><i class="fas fa-play" style="margin-left:2px;"></i></div>
+              </div>
+            </div>
+            <div class="game-card-body">
+              <div class="game-card-title">Red Dead Redemption 2</div>
+              <div class="game-card-footer">
+                <span class="game-card-tag tag-adventure">Adventure</span>
+                <div class="game-card-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span class="game-card-rating">9.9</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BROWSE BY GENRE -->
+        <div class="genre-section">
+          <div class="section-header">
+            <div>
+              <div class="section-title">Browse by Genre</div>
+              <div class="section-subtitle">Explore our full catalogue by category</div>
+            </div>
+          </div>
+
+          <div class="genre-chips">
+            <div class="genre-chip active">
+              <span class="genre-chip-icon">⚔️</span>
+              <span class="genre-chip-text">RPG</span>
+              <span class="genre-chip-count">842</span>
+            </div>
+            <div class="genre-chip">
+              <span class="genre-chip-icon">💥</span>
+              <span class="genre-chip-text">Action</span>
+              <span class="genre-chip-count">1,204</span>
+            </div>
+            <div class="genre-chip">
+              <span class="genre-chip-icon">♟️</span>
+              <span class="genre-chip-text">Strategy</span>
+              <span class="genre-chip-count">518</span>
+            </div>
+            <div class="genre-chip">
+              <span class="genre-chip-icon">🎯</span>
+              <span class="genre-chip-text">FPS</span>
+              <span class="genre-chip-count">376</span>
+            </div>
+            <div class="genre-chip">
+              <span class="genre-chip-icon">🗺️</span>
+              <span class="genre-chip-text">Adventure</span>
+              <span class="genre-chip-count">693</span>
+            </div>
+            <div class="genre-chip">
+              <span class="genre-chip-icon">⚽</span>
+              <span class="genre-chip-text">Sports</span>
+              <span class="genre-chip-count">241</span>
+            </div>
+            <div class="genre-chip">
+              <span class="genre-chip-icon">🧩</span>
+              <span class="genre-chip-text">Puzzle</span>
+              <span class="genre-chip-count">415</span>
+            </div>
+            <div class="genre-chip">
+              <span class="genre-chip-icon">👻</span>
+              <span class="genre-chip-text">Horror</span>
+              <span class="genre-chip-count">198</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- RECENTLY VIEWED -->
+        <div class="section-header">
+          <div>
+            <div class="section-title">Recently Viewed</div>
+            <div class="section-subtitle">Pick up where you left off</div>
+          </div>
+          <button class="see-all">Clear history <i class="fas fa-trash" style="font-size:10px;"></i></button>
+        </div>
+
+        <div class="recent-row">
+
+          <div class="recent-card">
+            <img class="recent-thumb" src="https://storage.googleapis.com/forge-sites/278a30f618841f882172cfad8213a62c429432d28af350e12a559c77af80043e.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103742Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=a1fba3fbf92673d339d43a8f6a22970fa8e56c5ec81c8eae19c8c5854e18812d4289b22e1794ca0202b506581f273eeede4621a84caeeef5965a794bdc4cd0ab87b009f9705bea1794227c2b5ba1a5ddaa4efc374dc7a071c4fa57d55cce0e043124909347d16ce7c027a2ee9dee07c017219d73e1774d366c485410955efb88118803aede53db34b319579219535018634f20888ec3dfc5161a6a25a8d8d0815e828a4fcd49ed9a6bc07a142ca93507396afd15021c72bb489922788bab1b1e3474a840cd7acae6a5a7a39489454ac5f2a77135f1785a568abb2a2bd7221c1d4545b8180152afcf050be07bf7037ab1e6de3dd6ed6874d858256233c2ae293c" alt="God of War Ragnarok game thumbnail showing Kratos and Atreus in a snowy Norse environment" width="200" height="80">
+            <div class="recent-info">
+              <div class="recent-title">God of War: Ragnarök</div>
+              <div class="recent-time"><i class="fas fa-clock" style="font-size:9px; margin-right:3px;"></i>2 hours ago</div>
+            </div>
+          </div>
+
+          <div class="recent-card">
+            <img class="recent-thumb" src="https://storage.googleapis.com/forge-sites/5a0f27a06ce9f97c23e8e5a78026a5936f0cf3b2c131e0b23187f4f7748abe32.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103742Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b19a2ff4463f2e19cc8e77e8245a2164db9ca7ccf21b3e99792c6cfc29b396099ed288f304b91300c94f6eb4be6e769635c4e33817a99091c9b996b61069a73ebd161733cf79b6262d328e0035a01b7ded26a9cb56ca155b12603fa78e938557628afc862e5c314f38d0ec498707bec17d000a630e30deb80b35bbf60c544145309721bea1a23fe0b30f855bc1a36944d3969b748cec4535f129a83ebab50f8f7fb0ab606172220fbbfd99b5769800cc95008aae39ce0bc8f3f71b9d5f5206f963f0605691cdbb0e1d78bbd21ac9478e89276e185a2d609131e1200110dc4e7e05c3a68429d4604d4b818eb2c8164b9699f4dee1e4031766522cd6f457a3d923" alt="Hades game thumbnail showing Zagreus in a dark underworld environment with vibrant red and gold colors" width="200" height="80">
+            <div class="recent-info">
+              <div class="recent-title">Hades</div>
+              <div class="recent-time"><i class="fas fa-clock" style="font-size:9px; margin-right:3px;"></i>5 hours ago</div>
+            </div>
+          </div>
+
+          <div class="recent-card">
+            <img class="recent-thumb" src="https://storage.googleapis.com/forge-sites/e5950c51bb25a6a7499fdd65b6d64efc2032bed8c89f5a717f1e1c7f6064f4ac.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103742Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=4aed53ea07eee299fdc7a53ad7a052dda54f8092897c83e7342a22aa3da8eb8e3384b4197e7faddf4fcd5961e1126d1c880c7e1419657b601664d125d5e22778e15f2daf58de192e0a19debe799c8b4e585ebfd3ee47cf045967f41e1e2e650f6a5e73062e38b688be301103725911350eaad515cc56ae69b8b5b794037e87786071704a2c3d639249b4a59745fcc5f115ab565a03a8c715840ebe99c47262cb5f894a9446bee74e7c290fdacf26e0dad7b3330ca3468dcb9d7b9ce45022db82a353cfc381538baa64e24577949bf29ae4977372e0b72732483b3eb952a0e6dfab0ed6cac33beafe66a2e58bb042fa6282028a14783b92587eb14774942e22ab" alt="Hollow Knight game thumbnail showing the Knight character in a dark underground cavern with glowing blue mushrooms" width="200" height="80">
+            <div class="recent-info">
+              <div class="recent-title">Hollow Knight</div>
+              <div class="recent-time"><i class="fas fa-clock" style="font-size:9px; margin-right:3px;"></i>Yesterday</div>
+            </div>
+          </div>
+
+          <div class="recent-card">
+            <img class="recent-thumb" src="https://storage.googleapis.com/forge-sites/87894042407ee6a71ab52f2de1a5a0b3bf8dcea3b50a1f9a283b2b96e0bf38c6.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103742Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b6807419e4fa25c9fc9857c461be2fd2cb148c88679124830f7c493c1c93a597ff2693037caa6e435c034bad7c6ba7190a47a621022986183cf67233b5edc086fc44b4923a75c068c49b8566470e1d447fd44c21559904d78ce48de618047b98d7d9350c72952b80b24bd13f57ecd5f35baf29961ac30ddc6267228c28cc32c2a2466a932223c465a80c7bcb41ad7fc59d2582308e63a7b08592df2e5133842aa850be55fdeff4ae02bfafbf356448c133fc8670e076663c600c2f0229c84e191812e9bc49649b9121e177ae304456456c03ca02cf7c9be712119c6316cb13448bdd2bcabcfc858d8d76ab90273e4d105d558d4072013a02d6d19a9ec33fc3ac" alt="Baldurs Gate 3 game thumbnail showing adventurers in a dark dungeon with dramatic magical lighting" width="200" height="80">
+            <div class="recent-info">
+              <div class="recent-title">Baldur's Gate 3</div>
+              <div class="recent-time"><i class="fas fa-clock" style="font-size:9px; margin-right:3px;"></i>Yesterday</div>
+            </div>
+          </div>
+
+          <div class="recent-card">
+            <img class="recent-thumb" src="https://storage.googleapis.com/forge-sites/aff5d0f539c2f69f4fcc97f8ff746405d959a4fa6844962d34a6594b904faa2a.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103742Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=a008f7470f86f7991dfc00b9a8e9271958d4d37749712f5ebe6a0dec2594fa2be25cf7d84fe36b9138a217b62e553ff3e63574084f9a90a86308963a20899ee18de869a09e144a6d4dbe87704a26f07cfadc23cb5f92d3b7aea85a5111c66e5e857ee172e58584873608ff57d028c0c49ff1c3064fa50985c2d5ea16c30a1997d97e190bfc4a53c0e42ef50008d4f2b92e8bdf7e2dbeed62b1e3ee6ea6ac0dee497d519db4c0a1542fdaf094593d60f7da0ccf3a17d4042b3aafc70f074c579afbaa96ea317768f747585e1ab30a0969d671c0b0b006724b77395b9fecdee6cb1b4b6728028090ab1c7f122893fe2c649d0c769e8b85c50ad17b3e8f76d1c1d5" alt="Sekiro Shadows Die Twice game thumbnail showing a shinobi in feudal Japan with cherry blossoms and a castle in the background" width="200" height="80">
+            <div class="recent-info">
+              <div class="recent-title">Sekiro: Shadows Die Twice</div>
+              <div class="recent-time"><i class="fas fa-clock" style="font-size:9px; margin-right:3px;"></i>2 days ago</div>
+            </div>
+          </div>
+
+          <div class="recent-card">
+            <img class="recent-thumb" src="https://storage.googleapis.com/forge-sites/aa3be11f9cf824b40d041518cd0c53e6faef17139f395f24ef17151bb47e404e.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103742Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=7e87c42e2137d5077f2768d3e559b6dba38777f3d5784ac6beaf025ad24cab513c41d2437d41904dedf2a2594610afc978171889741641dd0e5cc88f455102cc4d49a5f0fcadcff4ede04208f788151a87fe120c34cc24202be738ba2ced3783dd3f7322f79fe0fd906f6ca321c1a93b57e3cab147bc111bd9b399b27bf116cb0c34337505e19321a63eaf3e51876df998791249f2b4a5ed0ffee31d9afe7fd471b7bd096f160ec5bdd91bce52080c933dd39cf313960cf02dcbcb23cfd5bb1de567dd2fa85de8ba6b6de71ffd7c7f560770b8942de2109f985ae8db2b192ff01306e2c2d340badabad4ee838ff97fa58cbfde27047518ad04e82f1935ed02f0" alt="Mass Effect Legendary Edition game thumbnail showing Commander Shepard with the Normandy spaceship against a galaxy backdrop" width="200" height="80">
+            <div class="recent-info">
+              <div class="recent-title">Mass Effect Legendary</div>
+              <div class="recent-time"><i class="fas fa-clock" style="font-size:9px; margin-right:3px;"></i>3 days ago</div>
+            </div>
+          </div>
+
+          <div class="recent-card">
+            <img class="recent-thumb" src="https://storage.googleapis.com/forge-sites/e75b0a94af33b1421771bda988684f7e29dd5f23163affed8d2825323eef10ad.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103742Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=8b064ce42281af04827c8c28681a5d92b47823f0980bca413ea4816bb4d6bda059af40d0e3eed46e13770f14be4d528628638501951d9bac3164e4e09b0ab049c325f4726bcfd98ffa8078943978a6e65144333998cca63413f26064b3f8dfeffc7745641c8c85b1ab97b01669f838e2eb46b547dc08a32a12dd92b46ae721b6774c6c03263807d57bfc3e53f9846f8f1ddcdfa583d974e8abcb7af3a9a3f161d4b06669f3f7f4312cb0dfb378d30cfb7f9c6a8943381ab7b0b52e153e0451e5ac40af00840569cd25a6ba52508f9148a8cc0271e5679c980e374af426eea7b95db6e8e149965be5a29bcfc95aadc18992a3710b117fac4eaf42182ea6c6c8f9" alt="Control game thumbnail showing Jesse Faden in a brutalist paranormal government building with floating debris and surreal lighting" width="200" height="80">
+            <div class="recent-info">
+              <div class="recent-title">Control</div>
+              <div class="recent-time"><i class="fas fa-clock" style="font-size:9px; margin-right:3px;"></i>4 days ago</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /content-scroll -->
+
+    </div>
+    <!-- /main-content -->
+
+  </div>
+  <!-- /app-shell -->
+
+  <script>
+    // Nav item interactivity
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+
+    // Genre chip interactivity
+    document.querySelectorAll('.genre-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.genre-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
+
+    // Search input — subtle animation
+    const searchInput = document.querySelector('.search-bar input');
+    searchInput.addEventListener('focus', () => {
+      searchInput.parentElement.style.transform = 'scale(1.01)';
+    });
+    searchInput.addEventListener('blur', () => {
+      searchInput.parentElement.style.transform = 'scale(1)';
+    });
+  </script>
+
+</body></html>

@@ -1,0 +1,1570 @@
+<!DOCTYPE html><html lang="en"><head><base href="https://forge.moonchild.ai/site/a677313bdac0bc928f7fd0de485af2a0c09fed92ab848097ed76881df592396f/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameWiki — Game Encyclopedia &amp; Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F5F5F5;
+      --surface: #FFFFFF;
+      --accent: #2563EB;
+      --accent-light: #EFF6FF;
+      --accent-hover: #1D4ED8;
+      --green: #10B981;
+      --green-light: #ECFDF5;
+      --text-primary: #111827;
+      --text-secondary: #6B7280;
+      --text-muted: #9CA3AF;
+      --border: #E5E7EB;
+      --border-light: #F3F4F6;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --sidebar-width: 220px;
+      --topbar-height: 64px;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Layout ── */
+    .app {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      z-index: 10;
+      box-shadow: 1px 0 0 var(--border);
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 20px;
+      height: var(--topbar-height);
+      border-bottom: 1px solid var(--border-light);
+      text-decoration: none;
+    }
+
+    .sidebar-logo .logo-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--accent) 0%, #1E40AF 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+    }
+
+    .sidebar-logo .logo-text {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .sidebar-logo .logo-text span {
+      color: var(--accent);
+    }
+
+    .sidebar-nav {
+      padding: 16px 0;
+      flex: 1;
+    }
+
+    .nav-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 8px 20px 6px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 9px 20px;
+      cursor: pointer;
+      position: relative;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 13.5px;
+      font-weight: 500;
+      border-radius: 0;
+      transition: background 0.15s ease, color 0.15s ease;
+      user-select: none;
+    }
+
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) scaleY(0);
+      width: 3px;
+      height: 60%;
+      background: var(--accent);
+      border-radius: 0 3px 3px 0;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-item:hover {
+      background: var(--border-light);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-item.active::before {
+      transform: translateY(-50%) scaleY(1);
+    }
+
+    .nav-item .nav-icon {
+      width: 18px;
+      text-align: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .nav-item .nav-badge {
+      margin-left: auto;
+      background: var(--accent);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .user-card:hover {
+      background: var(--border-light);
+    }
+
+    .user-avatar-sm {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .user-avatar-sm img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .user-info-sm .user-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .user-info-sm .user-role {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ── Main Column ── */
+    .main-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    /* ── Top Bar ── */
+    .topbar {
+      height: var(--topbar-height);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      gap: 20px;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+      z-index: 9;
+    }
+
+    .topbar-search {
+      flex: 1;
+      max-width: 540px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .topbar-search input {
+      width: 100%;
+      padding: 9px 16px 9px 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      background: var(--bg);
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .topbar-search input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .topbar-search input:focus {
+      border-color: var(--accent);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
+    }
+
+    .topbar-search .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 13px;
+      pointer-events: none;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: background 0.15s ease, color 0.15s ease;
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      background: var(--border-light);
+      color: var(--text-primary);
+    }
+
+    .icon-btn .notif-dot {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 7px;
+      height: 7px;
+      background: #EF4444;
+      border-radius: 50%;
+      border: 1.5px solid white;
+    }
+
+    .avatar-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .avatar-btn:hover {
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .avatar-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── Content Area ── */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 28px 32px;
+      scroll-behavior: smooth;
+    }
+
+    .content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .content::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+    .content::-webkit-scrollbar-thumb:hover {
+      background: #D1D5DB;
+    }
+
+    /* ── Page Header ── */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .view-all-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background 0.15s ease;
+    }
+
+    .view-all-link:hover {
+      background: var(--accent-light);
+    }
+
+    /* ── Featured Banner ── */
+    .featured-banner {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 280px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+    }
+
+    .featured-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .featured-banner:hover img {
+      transform: scale(1.02);
+    }
+
+    .featured-banner .gradient-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.5) 45%,
+        rgba(0,0,0,0.0) 75%
+      );
+    }
+
+    .featured-content {
+      position: absolute;
+      bottom: 28px;
+      left: 32px;
+      right: 50%;
+    }
+
+    .featured-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .featured-title {
+      font-size: 30px;
+      font-weight: 900;
+      color: white;
+      line-height: 1.1;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .featured-tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .genre-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      backdrop-filter: blur(6px);
+    }
+
+    .genre-pill.accent {
+      background: rgba(37,99,235,0.7);
+      border-color: rgba(37,99,235,0.8);
+    }
+
+    .featured-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .rating-badge-large {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--green);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
+
+    .featured-dev {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .featured-actions {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .featured-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .featured-btn.primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.4);
+    }
+
+    .featured-btn.primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.45);
+    }
+
+    .featured-btn.secondary {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(8px);
+    }
+
+    .featured-btn.secondary:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-1px);
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .section-title .section-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: var(--accent-light);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    /* ── Trending Cards ── */
+    .trending-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .game-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid var(--border);
+    }
+
+    .game-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .game-card-cover {
+      position: relative;
+      height: 140px;
+      overflow: hidden;
+    }
+
+    .game-card-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .game-card:hover .game-card-cover img {
+      transform: scale(1.05);
+    }
+
+    .card-rating {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--green);
+      color: white;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 5px;
+    }
+
+    .card-fav-btn {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.4);
+      border: none;
+      color: rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+      opacity: 0;
+    }
+
+    .game-card:hover .card-fav-btn {
+      opacity: 1;
+    }
+
+    .card-fav-btn:hover {
+      background: rgba(239,68,68,0.85);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .game-card-body {
+      padding: 11px 12px 12px;
+    }
+
+    .game-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .game-card-genre {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .game-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .game-card-platform {
+      display: flex;
+      gap: 5px;
+    }
+
+    .platform-icon {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .card-score {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green);
+    }
+
+    /* ── Category Grid ── */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    .category-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      border: 1.5px solid var(--border);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      text-align: center;
+    }
+
+    .category-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .category-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      transition: transform 0.2s ease;
+    }
+
+    .category-card:hover .category-icon-wrap {
+      transform: scale(1.1);
+    }
+
+    .category-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .category-count {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: -6px;
+    }
+
+    /* ── Bottom Two-Column ── */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    /* ── New Releases List ── */
+    .new-releases-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .release-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .release-item:first-child {
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .release-item:last-child {
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+
+    .release-item:not(:first-child) {
+      border-top: none;
+    }
+
+    .release-item:hover {
+      background: var(--border-light);
+    }
+
+    .release-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .release-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .release-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .release-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+
+    .release-dev {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .release-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .release-genre-tag {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--border-light);
+      color: var(--text-secondary);
+    }
+
+    .release-date {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .release-score {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .score-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .score-box.excellent { background: #059669; }
+    .score-box.great { background: var(--green); }
+    .score-box.good { background: #3B82F6; }
+    .score-box.mixed { background: #F59E0B; }
+
+    .score-label {
+      font-size: 9.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ── Top Rated Panel ── */
+    .top-rated-panel {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .panel-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s ease;
+    }
+    .panel-link:hover { opacity: 0.75; }
+
+    .top-rated-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 18px;
+      border-bottom: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .top-rated-item:last-child {
+      border-bottom: none;
+    }
+
+    .top-rated-item:hover {
+      background: var(--border-light);
+    }
+
+    .rank-num {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-muted);
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .rank-num.gold { color: #D97706; }
+    .rank-num.silver { color: #6B7280; }
+    .rank-num.bronze { color: #92400E; }
+
+    .rated-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .rated-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .rated-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .rated-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .rated-genre {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .rated-score {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .stars {
+      display: flex;
+      gap: 1px;
+    }
+
+    .stars i {
+      font-size: 8px;
+      color: #F59E0B;
+    }
+
+    /* ── Misc ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <a class="sidebar-logo" href="#">
+      <div class="logo-icon">
+        <i class="fas fa-gamepad"></i>
+      </div>
+      <span class="logo-text">Game<span>Wiki</span></span>
+    </a>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a class="nav-item active" href="#">
+        <span class="nav-icon"><i class="fas fa-house"></i></span>
+        Home
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon"><i class="fas fa-compass"></i></span>
+        Browse Games
+        <span class="nav-badge">New</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon"><i class="fas fa-grid-2"></i></span>
+        Categories
+      </a>
+
+      <div class="nav-section-label" style="margin-top:10px;">Library</div>
+      <a class="nav-item" href="#">
+        <span class="nav-icon"><i class="fas fa-heart"></i></span>
+        Favorites
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon"><i class="fas fa-clock-rotate-left"></i></span>
+        Recently Viewed
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon"><i class="fas fa-list-check"></i></span>
+        My Lists
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon"><i class="fas fa-star"></i></span>
+        Top Rated
+      </a>
+
+      <div class="nav-section-label" style="margin-top:10px;">Account</div>
+      <a class="nav-item" href="#">
+        <span class="nav-icon"><i class="fas fa-gear"></i></span>
+        Settings
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon"><i class="fas fa-circle-question"></i></span>
+        Help &amp; About
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar-sm">
+          <img src="https://storage.googleapis.com/forge-sites/ca997361dc9b3693d7f26b5fbafd2eb91fdf6c22e5bfdf5af9b5ff870f1e2d91.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103436Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=32df1ffb08b39379904d1a224e894a7e306385a7b1e58c9c02b917eb92549141a2ce2e5776ab7100115a0e32e8e2d3ae7242b83a6faad92fec2b4e4c9ef77ba1c12403997717a9a40a86a1cc71bf286083d28b6a1605d16660b437bfa9ef77133f46798df2ee1146a0af5fdf657d1e031ddea81832e03a4ead32dc2d494ae04ace2a4df1c09275b4a091eba6c5daed7014f5aca74a2d3bdfe0fb50248325fc94b2fe88b7c62b23df25b910f959d827a137fb2e571bca7a90ab41d812b23a2ae416bf4f14346fdf1c6e57e976efca59cc808310a4553731e32861ad7ab9eb1e47a3c347b4a5ce3fadb10f7b11f5071775871ab1c92c4f82ca934d8d5d1e763182" alt="Profile photo of Alex, a young gamer with dark hair and a subtle smile, casual style" width="32" height="32">
+        </div>
+        <div class="user-info-sm">
+          <div class="user-name">Alex Chen</div>
+          <div class="user-role">Pro Member</div>
+        </div>
+        <i class="fas fa-ellipsis" style="margin-left:auto; color:var(--text-muted); font-size:12px;"></i>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Main Column ── -->
+  <div class="main-column">
+
+    <!-- ── Top Bar ── -->
+    <header class="topbar">
+      <div class="topbar-search">
+        <i class="fas fa-magnifying-glass search-icon"></i>
+        <input type="text" placeholder="Search games, genres, developers...">
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" title="Filter">
+          <i class="fas fa-sliders"></i>
+        </button>
+        <button class="icon-btn" title="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="icon-btn" title="Bookmarks">
+          <i class="fas fa-bookmark"></i>
+        </button>
+        <div class="avatar-btn">
+          <img src="https://storage.googleapis.com/forge-sites/ca997361dc9b3693d7f26b5fbafd2eb91fdf6c22e5bfdf5af9b5ff870f1e2d91.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103436Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=32df1ffb08b39379904d1a224e894a7e306385a7b1e58c9c02b917eb92549141a2ce2e5776ab7100115a0e32e8e2d3ae7242b83a6faad92fec2b4e4c9ef77ba1c12403997717a9a40a86a1cc71bf286083d28b6a1605d16660b437bfa9ef77133f46798df2ee1146a0af5fdf657d1e031ddea81832e03a4ead32dc2d494ae04ace2a4df1c09275b4a091eba6c5daed7014f5aca74a2d3bdfe0fb50248325fc94b2fe88b7c62b23df25b910f959d827a137fb2e571bca7a90ab41d812b23a2ae416bf4f14346fdf1c6e57e976efca59cc808310a4553731e32861ad7ab9eb1e47a3c347b4a5ce3fadb10f7b11f5071775871ab1c92c4f82ca934d8d5d1e763182" alt="User avatar of Alex Chen" width="36" height="36">
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Scrollable Content ── -->
+    <main class="content">
+
+      <!-- Page header -->
+      <div class="page-header">
+        <div>
+          <div class="page-title">Discover Games</div>
+          <div class="page-subtitle">Your personalized game encyclopedia — 48,000+ titles</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button style="display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius);border:1.5px solid var(--border);background:var(--surface);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--text-secondary);cursor:pointer;transition:all 0.15s ease;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">
+            <i class="fas fa-arrow-up-wide-short"></i> Sort
+          </button>
+          <button style="display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius);border:none;background:var(--accent);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:white;cursor:pointer;box-shadow:0 2px 6px rgba(37,99,235,0.3);transition:all 0.15s ease;" onmouseover="this.style.background='var(--accent-hover)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--accent)';this.style.transform='translateY(0)'">
+            <i class="fas fa-plus"></i> Add Game
+          </button>
+        </div>
+      </div>
+
+      <!-- ── Featured Banner ── -->
+      <div class="featured-banner">
+        <img src="https://storage.googleapis.com/forge-sites/e6c6607544c3920138538adfddeb58a73a4323f1c35ce17841284ddd835bee62.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103831Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=8695e1082fd2e326bd84dfd9f161d6f9d905f0430a626cad7d8e1ee109998ab8b4c4f14faa174492fc7e911c9f8a73ffd71076fcdc8f65874f8034afa2651dafd6b49285d12da5dcb4799435020c06d1778bc84e5da0234f97e088bfb8b79d0e23d33d1bba16c3914695a48f27309317de40ae54bea3cd4fc326d6f4d8c1c3175f2b5ab2f6e486ba00fd68f982cf882a395cbf3f6d8a24e92e8290ffc28eb1c21a8f84dd198b3267d2418a9d29070396d6f274c63775a1ee8fbd230ace6f65c36b942883d5b95f98d6abe7113c7f5cd97bb5eaf2cb3d76579b8b194461df312deaab87fa903267c5575d9376bac3738079ffeb6c8c002bcf4795f3ef82cf85fe" alt="Epic dark fantasy open-world game landscape with a massive crumbling stone arch gateway, glowing golden sky with storm clouds, a lone knight silhouette on horseback, dramatic cinematic lighting, dark and atmospheric" width="1440" height="280">
+        <div class="gradient-overlay"></div>
+
+        <div class="featured-actions">
+          <button class="featured-btn secondary"><i class="fas fa-play"></i> Watch Trailer</button>
+          <button class="featured-btn primary"><i class="fas fa-book-open"></i> View Wiki</button>
+        </div>
+
+        <div class="featured-content">
+          <div class="featured-label">
+            <i class="fas fa-fire-flame-curved"></i> Editor's Pick
+          </div>
+          <div class="featured-title">Elden Ring</div>
+          <div class="featured-tags">
+            <span class="genre-pill accent">RPG</span>
+            <span class="genre-pill">Open World</span>
+            <span class="genre-pill">Action</span>
+            <span class="genre-pill">Souls-like</span>
+          </div>
+          <div class="featured-meta">
+            <div class="rating-badge-large">
+              <i class="fas fa-star"></i> 9.6 / 10
+            </div>
+            <div class="featured-dev">FromSoftware · 2022 · PC, PS5, Xbox</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Trending Now ── -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon"><i class="fas fa-fire"></i></div>
+            Trending Now
+          </div>
+          <a class="view-all-link" href="#">View all <i class="fas fa-chevron-right" style="font-size:10px;"></i></a>
+        </div>
+        <div class="trending-grid">
+
+          <!-- Card 1 -->
+          <div class="game-card">
+            <div class="game-card-cover">
+              <img src="https://storage.googleapis.com/forge-sites/fa0bb81bee05f70c5e9532e3fc223c154478eb3a18bb22106a16c95d52dc1e8a.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103831Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=2a8e635c86f7de1b6dd6f20c31453b44a06e51200d64ae5cd1c56a8f8ba279735e91c199075950b76ae12d6cf8ed2f012b86561873a4580174ca4ed4e391d1d6f3292fb930b80e5b3d43fb028e7ece06fa82136d1db68bf0e57fd7b13dddfedfa25412aaf5785a03d5e638b6e88ceb2e2d2aed4b584a9863ff473314f34a72b7e29a89e27950acda0cc87004539fb206b57d3a707dc953f7143a07cd22f50eebf01f97e783836408ef0b9397322eaa9ed0934b6226a066fe509b32a90bbd619f164fd9e1350dab25f4c10ddb8e9ae3bcd3facd782ef23de2e27e18635549eed2df008a2c3ae8583062a1af0dc56fc3256a10c97d2f2bc0311201465e0aa7df17" alt="Baldur's Gate 3 fantasy RPG game cover art with adventurers in a magical realm, dark castle in background, rich blue and purple lighting" width="260" height="140">
+              <span class="card-rating">9.8</span>
+              <button class="card-fav-btn"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="game-card-body">
+              <div class="game-card-title">Baldur's Gate 3</div>
+              <div class="game-card-genre">RPG · Larian Studios</div>
+              <div class="game-card-footer">
+                <div class="game-card-platform">
+                  <i class="fab fa-windows platform-icon"></i>
+                  <i class="fab fa-playstation platform-icon"></i>
+                </div>
+                <div class="card-score"><i class="fas fa-star"></i> 9.8</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="game-card">
+            <div class="game-card-cover">
+              <img src="https://storage.googleapis.com/forge-sites/5b4bcad3a6583da4dc14f3495414f7f08545e433b4fe5689caf9cfbbc441e514.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103831Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=84e8caff1cc83cdbad1b7655a97e57ff94accd8b69dd5d35a0e2c10636a9a15403ceb42273f40d7faad77e0e84099c55355d815c65c557a1f04560f3e5734af0cd0e2fdf009e459f6eb811c4dbbee88907e3dc67b74c68cfd1a3228ba53aebe4b887e77fe3b7edb40177e78af5db3a899b98ce4593d080e3fbc45b84b2bda8f5aaee27fa103d85d2765880784dcc0eeaccd811f7618028a4354fce4ecc58b5d6300d946b05ba1ca83e42b468c1d20b5c32ceabbebf72adb11c6943a4e8914e6b474dab731e3deabb29d824bec006f4d66526cb695412b5663c8e26f097afadce11d63dc069ec91ff8468f22875e9954442e713876384f515a693576a6a6f126c" alt="Alan Wake 2 psychological horror game cover art with a writer surrounded by darkness and flickering manuscript pages, eerie forest with flashlight beam" width="260" height="140">
+              <span class="card-rating">9.0</span>
+              <button class="card-fav-btn"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="game-card-body">
+              <div class="game-card-title">Alan Wake 2</div>
+              <div class="game-card-genre">Horror · Remedy</div>
+              <div class="game-card-footer">
+                <div class="game-card-platform">
+                  <i class="fab fa-windows platform-icon"></i>
+                  <i class="fab fa-xbox platform-icon"></i>
+                </div>
+                <div class="card-score"><i class="fas fa-star"></i> 9.0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="game-card">
+            <div class="game-card-cover">
+              <img src="https://storage.googleapis.com/forge-sites/e04121231faed66034f5b59e51b090d701aad5a71837fde498768c0600f6f584.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103831Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=bc71b6a39d2d2d976cb269ff6dac8123e1b6e1ece52ad54a965a7abab634982922107f2d561ff7f8c1f37dd5057a2251faebc279153d126e5b0315400c1e68cd9131b481e31b8322f6211a9dde41bcb4292a619bc8fa92367f5f4db3c5d0382b70e2f98760cacac8a077aaa5cb2eb01a0d9ec6f834307e710d658054c427dc627d2d181b9b5498083b9e298c2d181a83ebc6829f0d565103715173161a72b2a8815c2114d137f5db530d0e4b2b62c374e5ef96f660164b66021439a955db695edb6c94f74c21bcb57545e36b37db3c2ee61df86dfb437ef31674aaa7a7878401318853a00869ebb5938ebb9122d685ae09f0c91ec5d93e5dd9cf67f8a964b4ad" alt="Starfield space exploration RPG cover art with astronaut standing on an alien planet surface, vast starfield and nebula in the deep space background" width="260" height="140">
+              <span class="card-rating" style="background: #3B82F6;">7.0</span>
+              <button class="card-fav-btn"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="game-card-body">
+              <div class="game-card-title">Starfield</div>
+              <div class="game-card-genre">Sci-Fi RPG · Bethesda</div>
+              <div class="game-card-footer">
+                <div class="game-card-platform">
+                  <i class="fab fa-windows platform-icon"></i>
+                  <i class="fab fa-xbox platform-icon"></i>
+                </div>
+                <div class="card-score" style="color:#3B82F6;"><i class="fas fa-star"></i> 7.0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="game-card">
+            <div class="game-card-cover">
+              <img src="https://storage.googleapis.com/forge-sites/f923dc438cb4583c2a1ae6392ed49f0f2b6490c814cbf32be23354895379affb.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103831Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=7119b16dd9fa4c8d90168a71fd93846c3c744f5701355e1329d95addd73533e203aef5c4944467fadc78f86eafc9107cd9342e8946b8954518d05b7e6c44163ce026d4380f02934d02fa01752ebcaf736e74a6189b80bc7bc419b691170e87d40ca6845775c99a6c840ff646e467c69b26dae4a6c16305b20a42ee8309b4dbb60ab1182a3e656fc579833aa43028b0adcf4bc4aabaee665b3cac26fb1aeef19f9ed54f6ac7cc6e9556de6d15ab1de519e089227bddc574be83e7481cd4c2eb8dfcf0fac95c21bdfac352b3505b07fbe3f7752b321da6fb8d11d37a61ffccf0d261e634720c9b7ed213aa0f1f29d88fda2c7f4e132eaeee697b0fbe0ce8f7d079" alt="Street Fighter 6 fighting game cover art with two iconic fighters in dynamic combat poses against a vibrant urban street backdrop with neon lights" width="260" height="140">
+              <span class="card-rating">9.2</span>
+              <button class="card-fav-btn"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="game-card-body">
+              <div class="game-card-title">Street Fighter 6</div>
+              <div class="game-card-genre">Fighting · Capcom</div>
+              <div class="game-card-footer">
+                <div class="game-card-platform">
+                  <i class="fab fa-windows platform-icon"></i>
+                  <i class="fab fa-playstation platform-icon"></i>
+                </div>
+                <div class="card-score"><i class="fas fa-star"></i> 9.2</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="game-card">
+            <div class="game-card-cover">
+              <img src="https://storage.googleapis.com/forge-sites/bb92c875f77555f683a48fa9de08b9b3170cdf73612992206f8d1e98a3b67ebb.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103831Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=9a5db87e441256b0e47c451b42b2a0310a2c082d9a169920fcdb2a609256907708141761748ade308cad4224fc4bbfaf243a102fe0062621e84d9626814dce189dc97ec0824f841781cf405f2049bf058275f0a497a2a80380aaafa93826f29f76f080f98c5970fb409ebd3a6f13b3bc39908a3315f914ecdbb605a92d46124b345e5f94ba4f05980a2cb8f9756eeb46373e5d9820846cd5261076829a15eb944bdf616dae69b74469a37f7c2ae56dcc5af71eed4a945c203abd9a74bb2878d83650166d75bc52ff97ce2f9778f66373728436f27944e2e9c4c44b193d770a9b7337a4da7ce9f3a2737b4521633c0fcc378a20d4210404a56af80a56780b21b0" alt="The Legend of Zelda Tears of the Kingdom cover art with Link soaring through a blue sky above floating islands and ancient ruins, magical energy swirling around" width="260" height="140">
+              <span class="card-rating">9.7</span>
+              <button class="card-fav-btn"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="game-card-body">
+              <div class="game-card-title">Zelda: TotK</div>
+              <div class="game-card-genre">Adventure · Nintendo</div>
+              <div class="game-card-footer">
+                <div class="game-card-platform">
+                  <i class="fas fa-gamepad platform-icon"></i>
+                </div>
+                <div class="card-score"><i class="fas fa-star"></i> 9.7</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Browse by Category ── -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon"><i class="fas fa-grid-2"></i></div>
+            Browse by Category
+          </div>
+          <a class="view-all-link" href="#">All categories <i class="fas fa-chevron-right" style="font-size:10px;"></i></a>
+        </div>
+        <div class="category-grid">
+
+          <div class="category-card">
+            <div class="category-icon-wrap" style="background:#FEF3C7; color:#D97706;">⚔️</div>
+            <div class="category-name">RPG</div>
+            <div class="category-count">4,820 games</div>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon-wrap" style="background:#FEE2E2; color:#DC2626;">💥</div>
+            <div class="category-name">Action</div>
+            <div class="category-count">8,340 games</div>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon-wrap" style="background:#DBEAFE; color:#2563EB;">🎯</div>
+            <div class="category-name">FPS</div>
+            <div class="category-count">2,640 games</div>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon-wrap" style="background:#D1FAE5; color:#059669;">🧩</div>
+            <div class="category-name">Strategy</div>
+            <div class="category-count">3,190 games</div>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon-wrap" style="background:#EDE9FE; color:#7C3AED;">🗺️</div>
+            <div class="category-name">Adventure</div>
+            <div class="category-count">5,560 games</div>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon-wrap" style="background:#FCE7F3; color:#DB2777;">🎮</div>
+            <div class="category-name">Puzzle</div>
+            <div class="category-count">1,870 games</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Bottom Row ── -->
+      <div class="bottom-row">
+
+        <!-- New Releases -->
+        <div class="section" style="margin-bottom:0;">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-icon"><i class="fas fa-sparkles"></i></div>
+              New Releases
+            </div>
+            <a class="view-all-link" href="#">See all <i class="fas fa-chevron-right" style="font-size:10px;"></i></a>
+          </div>
+          <div class="new-releases-list">
+
+            <div class="release-item">
+              <div class="release-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/27a748ae1413c72afe53f295b93bef23d5a8b7802aa252f197a01a93f03ce0a3.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103831Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=54fb192049ddd31f1409174c7cd6ab8fda82b25ab501e227e4c58c71f01ea2c52a82558f68c25e58c3573602855fb3785ff7db4b0772abe496b12bd49b6eb3cc3d80cee76c293043523c93e37ae9931648cd8fcb2a9df14aec00cdeb38b99480e618b4757fd95422dd2e2a29966fc1b8e03fc5448394b0bec68c3d23b0d24441f706d43a27bcc2682a50086253b92bab360adbc7792eb6abd175164550e06fad08a490e07d382fbf02ce1f85513c1c1327adface1b877a9e9a442120dcce66e4f9f0550226f53ae79dd1a14d4089fc856011463cd019946e612e2ba00ae243e2a7e38ba1d21ed0586f459a0f05e820a542de728ca462fcddf03665bd7e1f7eff" alt="Dragon Age The Veilguard thumbnail showing a group of fantasy heroes in magical armor standing before a glowing mystical portal" width="52" height="52">
+              </div>
+              <div class="release-info">
+                <div class="release-title">Dragon Age: The Veilguard</div>
+                <div class="release-dev">BioWare · Electronic Arts</div>
+                <div class="release-meta">
+                  <span class="release-genre-tag">RPG</span>
+                  <span class="release-date">Oct 31, 2024</span>
+                </div>
+              </div>
+              <div class="release-score">
+                <div class="score-box great">8.7</div>
+                <div class="score-label">Great</div>
+              </div>
+            </div>
+
+            <div class="release-item">
+              <div class="release-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/7db0bdb8f8928b923c6ddad5f26d4775aff4e6771dda7236c4d74b479b453552.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=8b5ae6f4a2ece3dd5191b4937fec7ca45adf02f2e4ec2cc08d1097a2c0864a4fe1da7a27cbff95d8a54914a9497fe943b82176269a51d8a8858e16d88a2b8bb62d090bf9ec6807b6f2ae4e784735e3252c927aa7b9384fe45daa7817a7a1ed71903fd7661d399dfdec580d834e533cb93bcbb4b8546945164c032dd1eb0ac9620f150abec750b85824e2d03bcfe5d28a4bc93ed6ee41c22da5b486e77c629d571f91af5b320af97c97bd1f1284beee075b08e8560aa6aaf9eaeaf1c1fbf70e003e42daa599d71e0a4e4edc2e07b73b8341ff0b3bbe3eaaecc9a2a9da8d64b33f3c74e62abb75feb629250dc989a286a1f4133163f387b0ca1c82a5947e648be7" alt="Call of Duty Black Ops 6 FPS game thumbnail showing a soldier in tactical gear against an explosive war backdrop" width="52" height="52">
+              </div>
+              <div class="release-info">
+                <div class="release-title">Call of Duty: Black Ops 6</div>
+                <div class="release-dev">Treyarch · Activision</div>
+                <div class="release-meta">
+                  <span class="release-genre-tag">FPS</span>
+                  <span class="release-date">Oct 25, 2024</span>
+                </div>
+              </div>
+              <div class="release-score">
+                <div class="score-box good">7.8</div>
+                <div class="score-label">Good</div>
+              </div>
+            </div>
+
+            <div class="release-item">
+              <div class="release-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/e566faf3ac5e37f6ff1e59866383176f3db790d561373051680c0bb2bd07f199.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=5975a43d9f19fa4d0952aae0b00fc2281d35c757db211ec58634db54d4186ed58bff2818bc13fd4a42957c2204271bd1f909e0ca60c3d4b395064af57b49dfb8521af3da55247f23ab979bc82e63603bdb886fa0c986f03ed30d9ec266d8f71324f91a52ac62ea712a96c9cd1413ce9f147ea11a358b2fdc4eb8f137b8f1a1981754ab73307479acb92ff94227de3562a7df76fad0729b043997a59294edac5ab10bb6fcfc840312cedccc0c3e40dced1515c16ea1f70de2352c026e56434801814d9fe108ed48d3c0582d73b2f57f2b156a401d1ca5da11ba15c3794f7e1c922c4ec1be2d7d3c5ddbd7f607574d224e9680f8baea9deba1fdab30f456bcd92c" alt="Metaphor ReFantazio JRPG thumbnail with a young hero in dramatic fantasy medieval setting, rich orange and gold color palette" width="52" height="52">
+              </div>
+              <div class="release-info">
+                <div class="release-title">Metaphor: ReFantazio</div>
+                <div class="release-dev">Atlus · Sega</div>
+                <div class="release-meta">
+                  <span class="release-genre-tag">JRPG</span>
+                  <span class="release-date">Oct 11, 2024</span>
+                </div>
+              </div>
+              <div class="release-score">
+                <div class="score-box excellent">9.3</div>
+                <div class="score-label">Excellent</div>
+              </div>
+            </div>
+
+            <div class="release-item">
+              <div class="release-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/8b7cfeca9be76872f55f229a90c67427b8af829b8a2929fd453817b078c18547.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=08329742ce1cd851d2c6e97cd4674f9221c77f2f046605521b7eb742dc3000be4e31196a17cc461d3890e0531609d63eb6f153b822819534428cb8b700783e3ff74d92fd8f68f6bbfb63a5908dfa3e46d72f12d27b81f791424a37fad326da35e3a6f8cc2b3d7b638fa4ea8d7f265118c9c5284c6cc85efdf8ce83e5564211414a7b2aed1a9f6c83ccafcc1d8eea6c72b5bc062ab94f58ed0072b5c41838f3ec2d2118a7499e7df183acc7c6423a7999011cdc6b1850618f27ea06675fb8e2f2be2da8c87bccff3ee9af8d140404104bc7f97fa95bdb1b45e6183f0cccb20bd03d0a2ee54a16f7b482f00b22f25b03b070f21d89c91dc45a94f6a3c1dd81ccb1" alt="Silent Hill 2 Remake horror game thumbnail with a figure in a foggy street, eerie industrial rust-covered buildings in the background" width="52" height="52">
+              </div>
+              <div class="release-info">
+                <div class="release-title">Silent Hill 2 (Remake)</div>
+                <div class="release-dev">Bloober Team · Konami</div>
+                <div class="release-meta">
+                  <span class="release-genre-tag">Horror</span>
+                  <span class="release-date">Oct 8, 2024</span>
+                </div>
+              </div>
+              <div class="release-score">
+                <div class="score-box great">8.9</div>
+                <div class="score-label">Great</div>
+              </div>
+            </div>
+
+            <div class="release-item">
+              <div class="release-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/afeb5770def81da7098a8d93b72c1a4ea04876670f5040994df8f2bd318acb3f.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=08d685e4ba5bc8c574a12f2320739c3cfba6f09c60cc5721a26460eebdb373d91ca3549f0e7300039a22701c69bb5d35b737e16c4672b97ccf692ec90e3cb18d9c09f7b5590648aeac4681a20794b3d5c0d9f95e8692ceab9252c4108075c3328f5e21fd4a9f2a1e06357c5a507ee9d28bf675d9c126cb37c073a8e9de7093510770b066b08cf457cffc6a206f6019ee631ca01c856282409bf792477f20dac1da13c89e8112876b15ad09dd8af1808637d1544aee7824000da13473b89fb49eb4b829249d6e5ffabfa349ecba8445dd932069d8975f3091db12d320598edb1c317cbfa50b2538d7071109067ebabf56a54f5655f0ccec3fbdfe6d45e63322fa" alt="Civilization 7 strategy game thumbnail showing an ancient city rising from a stylized map with rivers and mountains, painterly art style" width="52" height="52">
+              </div>
+              <div class="release-info">
+                <div class="release-title">Sid Meier's Civilization VII</div>
+                <div class="release-dev">Firaxis · 2K Games</div>
+                <div class="release-meta">
+                  <span class="release-genre-tag">Strategy</span>
+                  <span class="release-date">Feb 11, 2025</span>
+                </div>
+              </div>
+              <div class="release-score">
+                <div class="score-box good">7.5</div>
+                <div class="score-label">Good</div>
+              </div>
+            </div>
+
+            <div class="release-item">
+              <div class="release-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/31d0d7e8376aa30b463d1138e7f9eec3ffe8443d8a5f65564fce0e3a6cb1fecc.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=253ee873c9c5d91a58b56e1aabafe8b60cfcd9b12c2455286c15d31d234c0a5e13f1c7c93b83526c666bc673c655d32979754dc9488b2df0a94492b1a5a5e4bc3cf7b17b10e5ea62e146726a1a4faee95852487cd0e13ad18ed1b098c9fc85ef7afc5d2459aad30462feb7225e2fc95fd8fa96099939a7556e311efbd137b2b2db6daa1d318a119d26317f881e4479bb52f615c53cadeb450f45f6d4e8a7d51d9dade563c08c86f29bce354afd52fa14523eb10249741a45b3f1c0d9f80383952419681bc2e4c6f8880f31d201e677bfe221d1d1b2737bcacf569b695b622b30ef82fca27632b7bb7bfcc11c19ce584ee029cb5c077370166d4102afbc2452c4" alt="Indiana Jones and the Great Circle adventure game thumbnail showing Indiana Jones with his iconic hat and whip in a jungle temple setting" width="52" height="52">
+              </div>
+              <div class="release-info">
+                <div class="release-title">Indiana Jones: Great Circle</div>
+                <div class="release-dev">MachineGames · Bethesda</div>
+                <div class="release-meta">
+                  <span class="release-genre-tag">Adventure</span>
+                  <span class="release-date">Dec 9, 2024</span>
+                </div>
+              </div>
+              <div class="release-score">
+                <div class="score-box excellent">9.0</div>
+                <div class="score-label">Excellent</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Top Rated Panel -->
+        <div>
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-icon"><i class="fas fa-trophy"></i></div>
+              All-Time Top Rated
+            </div>
+            <a class="view-all-link" href="#">More <i class="fas fa-chevron-right" style="font-size:10px;"></i></a>
+          </div>
+          <div class="top-rated-panel">
+            <div class="panel-header">
+              <span class="panel-title">Hall of Fame</span>
+              <a class="panel-link" href="#">Full list →</a>
+            </div>
+
+            <div class="top-rated-item">
+              <div class="rank-num gold">1</div>
+              <div class="rated-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/6b3b4e40627296a9a023a353444f04bb3d37904e3cf648c8b6d9f572b540416d.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b6126d29585211d51b757a81389e7ff3594cd545703c84abfd5c1c9958ea81b3074e290defea7fd902ce47883dacbc1ee6e73909ab78faa5486981e8f4d7b0e0ce9f0f58ec2b7eec131bac731c2432788fcaa4b0404d631b39c50e3c0c5b5c644bdd96053e179f3dfdd7acfc86cf37df246e7ff6b661e1370a0fa21c90fbc19b46ab486ee1d46c33e92deb66eb9c2447815054826ca6455a55d829db6b2224816e2c2c2c29366cb1d1ced6eed23a4432be3c7c2e9c6103e9641ae033d8e4d69c5c45fabaee4a22b14d4235b4040f95d8f4b112fe313515eb92ebe245fe06091519e53c7f3986a4ca395d77fd04cb9aa8926af4e9cb7ae6b71e564de3908ccece" alt="Breath of the Wild Zelda game thumbnail showing Link on a hilltop overlooking vast Hyrulean landscape at golden hour" width="42" height="42">
+              </div>
+              <div class="rated-info">
+                <div class="rated-title">Zelda: BotW</div>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="rated-genre">Adventure · Nintendo</div>
+              </div>
+              <div class="rated-score">9.9</div>
+            </div>
+
+            <div class="top-rated-item">
+              <div class="rank-num silver">2</div>
+              <div class="rated-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/f9400c86d48ef8a7dcb407d942b5fce533dacf1c79917c6050ebec43f3a86a58.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=c51ea55552aa04027001c0abcb5878ed03be65e5d6e4b83c4d9f5446548952c5c29f735e5663bdb1d76544f9731c4c6ecda6a5b7089b62d38883e12a08692d6034baf4102f11d5509ced28f2f389213e65ce7d05c4551cdc7cca332c7fc033eedd24a9ef886efea0d92e33baf264f1a1ad5e1bbdd627fc7f6bc228dacd7b0ffb019e80ce0308a5076c06b640f2943f9f09a1a44e7a61a15a5aeab1a687d9cb614b1b31d18fb967da859e47b97b6387998b875cf20e438287d94b3c6fca8a5360d2dbf093a8242fb11f0aea53a0f05e8d5d44950a57ad70f54f181fa86e98f6219f9fed28c63742c765493b6b8b7034d66e85f57505a5b9d13148f36e302cf089" alt="Baldur's Gate 3 game thumbnail showing adventurers gathered around a campfire in a dark magical forest" width="42" height="42">
+              </div>
+              <div class="rated-info">
+                <div class="rated-title">Baldur's Gate 3</div>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="rated-genre">RPG · Larian</div>
+              </div>
+              <div class="rated-score">9.8</div>
+            </div>
+
+            <div class="top-rated-item">
+              <div class="rank-num bronze">3</div>
+              <div class="rated-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/a24a434aa16a5316885330252a6e89708be00bbf255ed2202a1227b19a91e231.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=261d6eca0bdd6d87ff5e2c125c90983db75cf2ded04cf1a69296ad281ae46ce674bcc8c8de7e85affc69c52b5f990a820ec71cfde6dcfb9dae205ff99065d62f9f7ed366ea3c611242bcfdc92ff8300c4797248df1ec16e7950015a006e8999404a68e2ec1c0d0a3fc1ecce7c9526fa06f4951326ef54af285704f1a030cdccc2c0c490f7e2f9aad69de63e88103272a9baf645561df80836f3d4fc488c98b936742b7821434bae3a87d626775a52de07be53e66892acafc4a02634fb343c035b32de1f850dff2b88b9d90ec1b44b21a01093ea897157ea15198894650dbe0f5269d4d447f0464f45fa16cfe250cf057aebc84f74bdb8ea347878eb7fb229d87" alt="Red Dead Redemption 2 western game thumbnail with cowboy on horseback at a dramatic sunset over the American frontier" width="42" height="42">
+              </div>
+              <div class="rated-info">
+                <div class="rated-title">Red Dead Redemption 2</div>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></div>
+                <div class="rated-genre">Action · Rockstar</div>
+              </div>
+              <div class="rated-score">9.7</div>
+            </div>
+
+            <div class="top-rated-item">
+              <div class="rank-num">4</div>
+              <div class="rated-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/7045a08234c48d0a65b9088ccd0b182660f858b746522a7d106b2d1ec41d6626.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=7b0081da67404751f11799e5ddfd14c22ed2a4c16dfe114caf5752109942ac12a54f0e6c63eb723bb27f7cd99f03afd97fb5b77639d027b9e98d81460e3798509feedb66853e70c4d92dae37b0b98565e2bca11fbde890ba6b43538b7db368e5990be13fc7ce2bd54e096e613463857b7887d4a8ec072e502df9968bfd1b01351b6ac93cd3c9130fef5411ecf68820d7dd041f1afabbdc30d08c81add4d3b880ba5db79190ed5ec56ddec4f59c37a038846f844675323c84b45a5155f1bdb37b0be36916b9e689ee7502d8e8ea7ec40e4ed20b973d968f3e31aec6e1cfd180ed78224da9f2f8e42497dbc5141509afabd549e78d344376c5770f1c8af91cf698" alt="God of War Ragnarok action game thumbnail showing Kratos and Atreus facing a dramatic Norse mythology landscape with stormy skies" width="42" height="42">
+              </div>
+              <div class="rated-info">
+                <div class="rated-title">God of War: Ragnarök</div>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></div>
+                <div class="rated-genre">Action · Santa Monica</div>
+              </div>
+              <div class="rated-score">9.7</div>
+            </div>
+
+            <div class="top-rated-item">
+              <div class="rank-num">5</div>
+              <div class="rated-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/e1e88d3277d4e975aba4de80ca68798e68cf02a6a4638caa98a5d77a171a1adb.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=0251c686a4e6e7c806b4e86e71cada813bfe3a2f473c15d52273a05f0737151def8afb96f499b86d8368685eeb2ffc78fe6092ea516b49fb6e857c132a0127fcbbe874848059b06a232c546caf7b360effffbb49f87e890560299cae728147c2fbb4ea5e435a5fe8dd72189b8d70e57fbd885ddadabe30d4824b1a605b184f32788bbb50dd08a34f6bbd1bc3738b61a36d4fa0dd5d61c8e4f1e676d9996174fa9a4cf4b4404f82093fd49a3ff938cdc48a96c09214f48da0477978f209e4cd00480b0eb053f65b44d28d97f83fc7cfdceaea7b3eddd924847123207eb016f52497fd01df8d683f27c966709b526d2b24043b192cdf067bbdd2e93e1b3b141e4f" alt="Elden Ring souls-like game thumbnail with the player character standing before the Erdtree glowing golden in a vast open field" width="42" height="42">
+              </div>
+              <div class="rated-info">
+                <div class="rated-title">Elden Ring</div>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></div>
+                <div class="rated-genre">RPG · FromSoftware</div>
+              </div>
+              <div class="rated-score">9.6</div>
+            </div>
+
+            <div class="top-rated-item">
+              <div class="rank-num">6</div>
+              <div class="rated-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/0a8cfed165d52394096e7334d87f73516d5772603523b27f9907fe47190d8ff2.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103832Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b5c931c0009580e7e6ae12e729004a9403a8db464cb20f970951e3cd80f846102e7f9f67b1a2437aca7cd46cd5f940e1ff96fb79f1c92669bb24013e13339a146a6da607362ffc186a1698a3aabc3ada95232e23438472ed1e25294a913bbe077991083d0ef1d39528faed2b01683cf986857947b5aabae23878344a66de52a08420edaf21473970f5183015ef5b4c00beba6a6d77feb5df696d52d7bcc984eabd49d3fd86a5f2ded948015e4ddcb4da4a5d1f8ebbaae3fe4a10a4fdef7a521ead5ab91a385c9b6d16922b6d881cd30c33fe3e3a3d5d01a422bde8b65719358c2b9c7d81929878872e69e1c8ab77181b4c40a81c88cf5869fa8d049e545ef399" alt="The Last of Us Part II action game thumbnail showing Ellie in a tense post-apocalyptic city environment with overgrown buildings" width="42" height="42">
+              </div>
+              <div class="rated-info">
+                <div class="rated-title">The Last of Us Part II</div>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></div>
+                <div class="rated-genre">Action · Naughty Dog</div>
+              </div>
+              <div class="rated-score">9.5</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+</body></html>

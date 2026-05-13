@@ -1,0 +1,1776 @@
+<!DOCTYPE html><html lang="en"><head><base href="https://forge.moonchild.ai/site/af259292a1d66ab95e696bf0fd71de394bed9bb36ecf41d113462fb23dd941de/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameWiki — Elden Ring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0F0F13;
+      --card: #1A1A24;
+      --sidebar: #13131C;
+      --accent: #7C3AED;
+      --accent-light: #9D5FF5;
+      --accent-glow: rgba(124, 58, 237, 0.35);
+      --amber: #F59E0B;
+      --amber-glow: rgba(245, 158, 11, 0.3);
+      --text-primary: #FFFFFF;
+      --text-secondary: #A0A0B8;
+      --border: rgba(255,255,255,0.06);
+      --card-hover: #1F1F2E;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      width: 1728px;
+      height: 1117px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-shell {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      background: var(--sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 24px 24px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--accent), #5B21B6);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 0 16px var(--accent-glow);
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #fff 60%, var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sidebar-nav {
+      padding: 20px 14px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .nav-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      padding: 0 10px 10px;
+      margin-top: 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+      margin-bottom: 2px;
+    }
+
+    .nav-item:hover {
+      background: rgba(124, 58, 237, 0.12);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: rgba(124, 58, 237, 0.18);
+      color: var(--text-primary);
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+
+    .nav-item.active .nav-icon {
+      color: var(--accent-light);
+    }
+
+    .nav-icon {
+      width: 18px;
+      text-align: center;
+      font-size: 15px;
+      transition: color 0.18s ease;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+
+    .sidebar-footer {
+      padding: 16px 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: rgba(255,255,255,0.04);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .user-card:hover {
+      background: rgba(255,255,255,0.07);
+    }
+
+    .user-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED, #F59E0B);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .user-info .user-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .user-info .user-role {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .user-card .fa-chevron-right {
+      margin-left: auto;
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 32px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(15, 15, 19, 0.85);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .topbar-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .topbar-breadcrumb {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .topbar-breadcrumb .crumb-link {
+      color: var(--accent-light);
+      cursor: pointer;
+      transition: color 0.18s;
+    }
+
+    .topbar-breadcrumb .crumb-link:hover {
+      color: #fff;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      position: relative;
+      transition: transform 0.2s ease;
+    }
+
+    .search-bar input {
+      width: 100%;
+      height: 42px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0 18px 0 44px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-bar input::placeholder { color: var(--text-secondary); }
+
+    .search-bar input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .topbar-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .topbar-btn:hover {
+      background: rgba(124,58,237,0.15);
+      color: var(--accent-light);
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .topbar-btn.notif { position: relative; }
+
+    .notif-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 7px;
+      height: 7px;
+      background: var(--amber);
+      border-radius: 50%;
+      border: 1.5px solid var(--bg);
+    }
+
+    /* ─── CONTENT SCROLL ─── */
+    .content-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(124,58,237,0.3) transparent;
+    }
+
+    .content-scroll::-webkit-scrollbar { width: 6px; }
+    .content-scroll::-webkit-scrollbar-track { background: transparent; }
+    .content-scroll::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.3); border-radius: 3px; }
+
+    /* ─── HERO BANNER ─── */
+    .hero-banner {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,15,19,0.2) 0%, rgba(15,15,19,0.75) 60%, rgba(15,15,19,1) 100%);
+    }
+
+    .hero-overlay-left {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(15,15,19,0.7) 0%, transparent 60%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 32px 28px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(124,58,237,0.25);
+      border: 1px solid rgba(124,58,237,0.45);
+      color: #C4B5FD;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -1.5px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta-item {
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .hero-meta-item i {
+      font-size: 11px;
+      color: var(--accent-light);
+    }
+
+    .hero-meta-dot {
+      width: 3px;
+      height: 3px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 50%;
+    }
+
+    .hero-tag {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-secondary);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+
+    .hero-tag:hover {
+      background: rgba(124,58,237,0.2);
+      color: #C4B5FD;
+    }
+
+    .hero-tag.accent {
+      background: rgba(124,58,237,0.22);
+      border-color: rgba(124,58,237,0.5);
+      color: #C4B5FD;
+    }
+
+    /* ─── PAGE BODY LAYOUT ─── */
+    .page-body {
+      display: flex;
+      gap: 0;
+      padding: 0 32px 32px;
+      min-height: 0;
+    }
+
+    /* LEFT COLUMN */
+    .left-column {
+      width: 220px;
+      flex-shrink: 0;
+      margin-top: -60px;
+      position: relative;
+      z-index: 3;
+      margin-right: 28px;
+    }
+
+    .cover-card {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 24px rgba(124,58,237,0.15);
+      margin-bottom: 16px;
+    }
+
+    .cover-img {
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .rating-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .rating-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .rating-score {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .rating-number {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--amber);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .rating-out-of {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .stars-row {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 8px;
+    }
+
+    .stars-row .fa-star {
+      font-size: 14px;
+      color: var(--amber);
+      filter: drop-shadow(0 0 4px var(--amber-glow));
+    }
+
+    .stars-row .fa-star-half-stroke {
+      font-size: 14px;
+      color: var(--amber);
+    }
+
+    .rating-count-text {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .platform-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .platform-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .platform-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .platform-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .platform-icon-wrap {
+      width: 30px;
+      height: 30px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .platform-date {
+      margin-left: auto;
+      font-size: 10px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* ─── CENTER COLUMN ─── */
+    .center-column {
+      flex: 1;
+      min-width: 0;
+      margin-right: 24px;
+    }
+
+    /* TABS */
+    .tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+      padding-bottom: 0;
+      margin-top: 16px;
+    }
+
+    .tab-item {
+      padding: 10px 18px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      white-space: nowrap;
+      margin-bottom: -1px;
+    }
+
+    .tab-item:hover {
+      color: var(--text-primary);
+    }
+
+    .tab-item.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--accent);
+    }
+
+    /* TAB CONTENT */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .description-block {
+      margin-bottom: 24px;
+    }
+
+    .description-block p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #C8C8D8;
+      margin-bottom: 14px;
+    }
+
+    .description-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-heading {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.2px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-heading::before {
+      content: '';
+      display: block;
+      width: 3px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: #C8C8D8;
+      line-height: 1.5;
+    }
+
+    .features-list li .feature-bullet {
+      width: 18px;
+      height: 18px;
+      background: rgba(124,58,237,0.2);
+      border: 1px solid rgba(124,58,237,0.4);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .features-list li .feature-bullet i {
+      font-size: 9px;
+      color: var(--accent-light);
+    }
+
+    /* SYS REQ TABLE */
+    .sysreq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .sysreq-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .sysreq-header {
+      background: rgba(124,58,237,0.1);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-light);
+    }
+
+    .sysreq-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .sysreq-table tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .sysreq-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .sysreq-table tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .sysreq-table td {
+      padding: 9px 16px;
+      font-size: 12.5px;
+      vertical-align: top;
+    }
+
+    .sysreq-table td:first-child {
+      color: var(--text-secondary);
+      font-weight: 600;
+      width: 105px;
+      white-space: nowrap;
+    }
+
+    .sysreq-table td:last-child {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ─── RIGHT SIDEBAR ─── */
+    .right-sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      margin-top: 16px;
+    }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .info-card-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-row:hover {
+      background: rgba(255,255,255,0.025);
+    }
+
+    .info-row-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .info-row-value {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .metacritic-score {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 26px;
+      background: linear-gradient(135deg, #10B981, #059669);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 900;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(16,185,129,0.35);
+    }
+
+    .esrb-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 10px;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--amber);
+      letter-spacing: 0.5px;
+    }
+
+    .price-value {
+      font-size: 14px;
+      font-weight: 900;
+      color: #34D399;
+    }
+
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 11px 20px;
+      border-radius: 9px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+      box-shadow: 0 4px 18px rgba(124,58,237,0.4);
+      margin-bottom: 10px;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      box-shadow: 0 6px 24px rgba(124,58,237,0.6);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 20px;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      margin-bottom: 10px;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+
+    .action-buttons {
+      padding: 14px 16px 16px;
+    }
+
+    .award-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .award-item:last-child {
+      border-bottom: none;
+    }
+
+    .award-item:hover {
+      background: rgba(255,255,255,0.025);
+    }
+
+    .award-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .award-text {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .award-year {
+      font-size: 10px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* Gameplay tab content */
+    .gameplay-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .gameplay-stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .gameplay-stat-card:hover {
+      border-color: rgba(124,58,237,0.3);
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .gameplay-stat-value {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .gameplay-stat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Reviews tab */
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .review-card:hover {
+      border-color: rgba(124,58,237,0.25);
+      background: var(--card-hover);
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .reviewer-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .reviewer-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .reviewer-date {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 2px;
+      margin-left: auto;
+    }
+
+    .review-stars .fa-star {
+      font-size: 11px;
+      color: var(--amber);
+    }
+
+    .review-text {
+      font-size: 13px;
+      color: #C8C8D8;
+      line-height: 1.65;
+    }
+
+    /* Media tab */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .media-thumb {
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      aspect-ratio: 16/9;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .media-thumb:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      border-color: rgba(124,58,237,0.35);
+    }
+
+    .media-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .media-thumb:hover .media-thumb-overlay {
+      background: rgba(0,0,0,0.45);
+    }
+
+    .media-play-btn {
+      width: 40px;
+      height: 40px;
+      background: rgba(124,58,237,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 20px rgba(124,58,237,0.5);
+    }
+
+    .media-thumb:hover .media-play-btn {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Story tab */
+    .story-timeline {
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .story-timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), rgba(124,58,237,0.1));
+      border-radius: 2px;
+    }
+
+    .story-point {
+      position: relative;
+      margin-bottom: 22px;
+    }
+
+    .story-point::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-glow);
+      border: 2px solid var(--bg);
+    }
+
+    .story-point-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .story-point-text {
+      font-size: 13px;
+      color: #C8C8D8;
+      line-height: 1.65;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- ─── SIDEBAR ─── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon"><i class="fas fa-gamepad"></i></div>
+      <span class="logo-text">GameWiki</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Menu</div>
+      <div class="nav-item">
+        <span class="nav-icon"><i class="fas fa-house"></i></span>
+        <span>Home</span>
+      </div>
+      <div class="nav-item active">
+        <span class="nav-icon"><i class="fas fa-magnifying-glass"></i></span>
+        <span>Browse Games</span>
+        <span class="nav-badge">4.2K</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon"><i class="fas fa-layer-group"></i></span>
+        <span>Categories</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon"><i class="fas fa-heart"></i></span>
+        <span>Favorites</span>
+        <span class="nav-badge">24</span>
+      </div>
+
+      <div class="nav-section-label" style="margin-top:18px;">History</div>
+      <div class="nav-item">
+        <span class="nav-icon"><i class="fas fa-clock-rotate-left"></i></span>
+        <span>Recently Viewed</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon"><i class="fas fa-bookmark"></i></span>
+        <span>My Lists</span>
+      </div>
+
+      <div class="nav-section-label" style="margin-top:18px;">System</div>
+      <div class="nav-item">
+        <span class="nav-icon"><i class="fas fa-gear"></i></span>
+        <span>Settings</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon"><i class="fas fa-circle-question"></i></span>
+        <span>Help &amp; Support</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">Jake D.</div>
+          <div class="user-role">Pro Member</div>
+        </div>
+        <i class="fas fa-chevron-right"></i>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ─── -->
+  <div class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Elden Ring</div>
+        <div class="topbar-breadcrumb">
+          <span class="crumb-link">Home</span>
+          <i class="fas fa-chevron-right" style="font-size:9px;"></i>
+          <span class="crumb-link">Browse Games</span>
+          <i class="fas fa-chevron-right" style="font-size:9px;"></i>
+          <span style="color: var(--text-secondary);">Elden Ring</span>
+        </div>
+      </div>
+
+      <div class="search-bar">
+        <i class="fas fa-magnifying-glass search-icon"></i>
+        <input type="text" placeholder="Search games, genres, publishers...">
+      </div>
+
+      <div class="topbar-actions">
+        <button class="topbar-btn notif">
+          <i class="fas fa-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="topbar-btn">
+          <i class="fas fa-sliders"></i>
+        </button>
+        <button class="topbar-btn">
+          <i class="fas fa-grip"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT SCROLL -->
+    <div class="content-scroll">
+
+      <!-- HERO BANNER -->
+      <div class="hero-banner">
+        <img class="hero-bg" src="https://storage.googleapis.com/forge-sites/94bebdaa7dd5ab457ddcde221b2438dcbf29131ccc47dc792510c4e5257c6385.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103741Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b87aa2c8fc9adc278b55db64089fdc24b8ecf21cd830f3b1a6529dc192440c75ffe5bf3667a270e05f05b140f1ca76c07a7c493f93fed5462f8e68224613c257d089f1c74ac22023af8ff5dab8e97af4ef85eee6dd5fe49e86a2d0b529b390d02d27ade541a5074fc63376a9999681b961280be1197af002b16c90c36b1a6c9bb2988d5c068cafaff473e7e67d4bbc3ab31f8e153e03e979a6ad7fb84dd11a70be2891c5eb181929b05cba1e0ca6a0eee27bf548766cbf2460014e3dee8bc18505a4aa8943219ea778e65eb002dc3d4fde5ebb9b2ae73e64a375c6df1e5b483e0895b9727f92f68d497fcd59c07256ef1431df02d65f2f4812cbc2b0bd501ce4" alt="Elden Ring epic fantasy landscape showing a vast golden glowing ruins landscape under a dramatic stormy sky with the broken golden ring in the background and a lone warrior silhouetted in the foreground" width="1488" height="260">
+        <div class="hero-overlay"></div>
+        <div class="hero-overlay-left"></div>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-trophy" style="font-size:9px;"></i>
+            Game of the Year 2022
+          </div>
+          <h1 class="hero-title">Elden Ring</h1>
+          <div class="hero-meta-row">
+            <span class="hero-meta-item"><i class="fas fa-calendar"></i> February 25, 2022</span>
+            <span class="hero-meta-dot"></span>
+            <span class="hero-meta-item"><i class="fas fa-code"></i> FromSoftware</span>
+            <span class="hero-meta-dot"></span>
+            <span class="hero-meta-item"><i class="fas fa-building"></i> Bandai Namco</span>
+            <span class="hero-meta-dot"></span>
+            <span class="hero-tag accent">RPG</span>
+            <span class="hero-tag">Action</span>
+            <span class="hero-tag">Open World</span>
+            <span class="hero-tag">Souls-like</span>
+            <span class="hero-tag">Dark Fantasy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE BODY -->
+      <div class="page-body">
+
+        <!-- LEFT COLUMN -->
+        <div class="left-column">
+          <div class="cover-card">
+            <img class="cover-img" src="https://storage.googleapis.com/forge-sites/5b7c8845f88390e55d965ebb564162efb8d9d637b43dc5334d586cdb1825ba2b.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T104003Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=7f6d03a3fb7b99a24f049e642808c45cdc22c90f49f7f2da5994e0c1d3d8611b48b70a756e6aab07a2a1e9d14f78fbfe3f9b345a5e1c3ec0f38e7d189c8053542ae20521219573fd39926de891752b5fdf79e7931b1d3aa1465c20ba656bfd7486cbbf54725067e2d74c82b311d3e7bf79ef9b2c4cdbb04c7deb2fddd500edb462926d57434f0ae75a69d136879d93d04f9778d04dc545f9b96c8027d92f5492df34f960c3d3c649ca2b2c58fa6b1d3c00874eeee46c4c2702d408bfa91c3a54579b7441deed39db8508798567e87fcf1bcd600f6c32741db033bcde92b759f52dfc6eff8f0bbe2fec2cfadaecbb96cfcdf11f5f46b99b67eff66bba54f4003b" alt="Elden Ring official tall game cover art showing the Tarnished warrior in golden armor standing before the shattered Elden Ring in a dark atmospheric fantasy setting with glowing golden light" width="220" height="290">
+          </div>
+
+          <div class="rating-card">
+            <div class="rating-label">User Rating</div>
+            <div class="rating-score">
+              <span class="rating-number">9.7</span>
+              <span class="rating-out-of">/ 10</span>
+            </div>
+            <div class="stars-row">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-stroke"></i>
+            </div>
+            <div class="rating-count-text">Based on 64,182 ratings</div>
+          </div>
+
+          <div class="platform-section">
+            <div class="platform-label">Available On</div>
+            <div class="platform-list">
+              <div class="platform-item">
+                <div class="platform-icon-wrap"><i class="fas fa-desktop"></i></div>
+                PC (Steam)
+                <span class="platform-date">Feb '22</span>
+              </div>
+              <div class="platform-item">
+                <div class="platform-icon-wrap"><i class="fab fa-playstation"></i></div>
+                PlayStation 5
+                <span class="platform-date">Feb '22</span>
+              </div>
+              <div class="platform-item">
+                <div class="platform-icon-wrap"><i class="fab fa-playstation"></i></div>
+                PlayStation 4
+                <span class="platform-date">Feb '22</span>
+              </div>
+              <div class="platform-item">
+                <div class="platform-icon-wrap"><i class="fab fa-xbox"></i></div>
+                Xbox Series X
+                <span class="platform-date">Feb '22</span>
+              </div>
+              <div class="platform-item">
+                <div class="platform-icon-wrap"><i class="fab fa-xbox"></i></div>
+                Xbox One
+                <span class="platform-date">Feb '22</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENTER COLUMN -->
+        <div class="center-column">
+          <div class="tabs-bar">
+            <div class="tab-item active" data-tab="overview">Overview</div>
+            <div class="tab-item" data-tab="gameplay">Gameplay</div>
+            <div class="tab-item" data-tab="story">Story</div>
+            <div class="tab-item" data-tab="media">Media</div>
+            <div class="tab-item" data-tab="reviews">Reviews</div>
+          </div>
+
+          <!-- OVERVIEW TAB -->
+          <div class="tab-content active" id="tab-overview">
+            <div class="description-block">
+              <div class="section-heading">About Elden Ring</div>
+              <p>Elden Ring is an action role-playing game set in a vast open world known as the Lands Between. Developed by FromSoftware and published by Bandai Namco Entertainment, it was created in collaboration with fantasy novelist George R.R. Martin, who crafted the mythos underlying the game's universe. Players take on the role of the Tarnished — exiles called back to the Lands Between after the shattering of the Elden Ring.</p>
+              <p>The game builds upon the beloved Souls formula established by FromSoftware's previous titles — Dark Souls, Bloodborne, and Sekiro — while introducing unprecedented scope and freedom. For the first time in the studio's history, players can explore a fully open world filled with dungeons, castles, hidden secrets, and formidable demigod bosses. Horseback traversal via spectral steed Torrent further expands exploration possibilities.</p>
+              <p>The seamless blend of rich lore, deeply strategic combat, and a breathtaking world resulted in near-universal critical acclaim. It won Game of the Year at The Game Awards 2022 and shipped over 20 million copies, becoming FromSoftware's most commercially successful title to date.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section-heading">Key Features</div>
+            <ul class="features-list">
+              <li>
+                <div class="feature-bullet"><i class="fas fa-check"></i></div>
+                <span><strong>Vast Open World:</strong> Explore the Lands Between — a sweeping open world with six major regions, each featuring unique biomes, dungeons, catacombs, and ruins to discover.</span>
+              </li>
+              <li>
+                <div class="feature-bullet"><i class="fas fa-check"></i></div>
+                <span><strong>Deep Combat System:</strong> Master a rich arsenal of weapons, sorceries, incantations, and Ashes of War. Every encounter demands strategy, patience, and skill.</span>
+              </li>
+              <li>
+                <div class="feature-bullet"><i class="fas fa-check"></i></div>
+                <span><strong>George R.R. Martin's Mythos:</strong> The world's history and lore were developed by the author of A Song of Ice and Fire, lending unprecedented narrative depth to the setting.</span>
+              </li>
+              <li>
+                <div class="feature-bullet"><i class="fas fa-check"></i></div>
+                <span><strong>Multiplayer &amp; Co-op:</strong> Summon other players into your world for cooperative play or engage in PvP invasions for intense online moments.</span>
+              </li>
+              <li>
+                <div class="feature-bullet"><i class="fas fa-check"></i></div>
+                <span><strong>Build Customization:</strong> Choose from hundreds of weapons, armor sets, and magic abilities to craft a completely unique Tarnished with your preferred playstyle.</span>
+              </li>
+              <li>
+                <div class="feature-bullet"><i class="fas fa-check"></i></div>
+                <span><strong>Shadow of the Erdtree DLC:</strong> The massive expansion released in 2024 introduces an entirely new region — the Land of Shadow — with new bosses, weapons, and narrative revelations.</span>
+              </li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <div class="section-heading">System Requirements</div>
+            <div class="sysreq-grid">
+              <div class="sysreq-card">
+                <div class="sysreq-header">Minimum Requirements</div>
+                <table class="sysreq-table">
+                  <tbody><tr>
+                    <td>OS</td>
+                    <td>Windows 10/11 64-bit</td>
+                  </tr>
+                  <tr>
+                    <td>CPU</td>
+                    <td>Intel Core i5-8400 / AMD Ryzen 3 3300X</td>
+                  </tr>
+                  <tr>
+                    <td>RAM</td>
+                    <td>12 GB</td>
+                  </tr>
+                  <tr>
+                    <td>GPU</td>
+                    <td>NVIDIA GTX 1060 3GB / AMD RX 580 4GB</td>
+                  </tr>
+                  <tr>
+                    <td>Storage</td>
+                    <td>60 GB available space</td>
+                  </tr>
+                  <tr>
+                    <td>DirectX</td>
+                    <td>Version 12</td>
+                  </tr>
+                </tbody></table>
+              </div>
+
+              <div class="sysreq-card">
+                <div class="sysreq-header">Recommended Requirements</div>
+                <table class="sysreq-table">
+                  <tbody><tr>
+                    <td>OS</td>
+                    <td>Windows 10/11 64-bit</td>
+                  </tr>
+                  <tr>
+                    <td>CPU</td>
+                    <td>Intel Core i7-8700K / AMD Ryzen 5 3600X</td>
+                  </tr>
+                  <tr>
+                    <td>RAM</td>
+                    <td>16 GB</td>
+                  </tr>
+                  <tr>
+                    <td>GPU</td>
+                    <td>NVIDIA GTX 1070 8GB / AMD RX Vega 56 8GB</td>
+                  </tr>
+                  <tr>
+                    <td>Storage</td>
+                    <td>60 GB SSD</td>
+                  </tr>
+                  <tr>
+                    <td>DirectX</td>
+                    <td>Version 12</td>
+                  </tr>
+                </tbody></table>
+              </div>
+            </div>
+          </div>
+
+          <!-- GAMEPLAY TAB -->
+          <div class="tab-content" id="tab-gameplay">
+            <div class="gameplay-stats">
+              <div class="gameplay-stat-card">
+                <div class="gameplay-stat-value" style="color: var(--amber);">50–200+</div>
+                <div class="gameplay-stat-label">Hours of Content</div>
+              </div>
+              <div class="gameplay-stat-card">
+                <div class="gameplay-stat-value" style="color: #9D5FF5;">165+</div>
+                <div class="gameplay-stat-label">Boss Encounters</div>
+              </div>
+              <div class="gameplay-stat-card">
+                <div class="gameplay-stat-value" style="color: #34D399;">309</div>
+                <div class="gameplay-stat-label">Weapons Available</div>
+              </div>
+            </div>
+
+            <div class="section-heading">Combat &amp; Mechanics</div>
+            <div class="description-block">
+              <p>Elden Ring's combat is the culmination of FromSoftware's decade-long refinement of action RPG mechanics. Players must carefully manage stamina, read enemy attack patterns, and leverage their build's strengths. The introduction of Ashes of War — special abilities that can be applied to weapons — dramatically expands combat versatility.</p>
+              <p>Stealth mechanics allow players to approach some encounters silently, setting up backstab criticals. The Spirit Ashes system lets players summon spectral allies during combat, providing welcome support in difficult encounters. Horseback combat on Torrent opens up entirely new tactical possibilities in the open world.</p>
+            </div>
+          </div>
+
+          <!-- STORY TAB -->
+          <div class="tab-content" id="tab-story">
+            <div class="section-heading">Narrative Overview</div>
+            <div class="story-timeline">
+              <div class="story-point">
+                <div class="story-point-title">The Shattering</div>
+                <div class="story-point-text">Long ago, the Greater Will sent a golden order to the Lands Between through the Elden Ring, granting grace and power to all under its light. But Queen Marika shattered the Elden Ring, plunging the world into conflict as her demigod children fought over its shards — the Great Runes.</div>
+              </div>
+              <div class="story-point">
+                <div class="story-point-title">The Tarnished Returns</div>
+                <div class="story-point-text">The Tarnished — once exiled from the Lands Between after losing grace — are called back by the guidance of a golden light. You are one such Tarnished, tasked with collecting the Great Runes from the demigods and reforging the Elden Ring to become the Elden Lord.</div>
+              </div>
+              <div class="story-point">
+                <div class="story-point-title">The Demigods and Their Domains</div>
+                <div class="story-point-text">Six demigod rulers hold sway over the major regions of the Lands Between, each corrupted or broken by the Shattering. From Godrick the Grafted in Stormveil Castle to Malenia, Blade of Miquella in the rot-soaked Haligtree, each presents a formidable challenge and carries a fragment of the Ring.</div>
+              </div>
+              <div class="story-point">
+                <div class="story-point-title">Multiple Endings</div>
+                <div class="story-point-text">The Elden Ring features multiple branching endings determined by player choices and NPC questlines throughout the game — from the Age of Fracture to the radical Age of Stars, each reflecting different philosophies for the future of the Lands Between.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MEDIA TAB -->
+          <div class="tab-content" id="tab-media">
+            <div class="section-heading">Screenshots</div>
+            <div class="media-grid">
+              <div class="media-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/bdcb21e9ddc6c7776cc4e43432da676e2c0280719dbf4b5521b6780e27fd7eb9.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T104003Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=7a1d6e613105eb80a615752dfc67f67da42d740fbb5df29c48f4c0ab5922fb32872c89fd310766917c021b6845ec2bf06f757e421faf294d7fef75d8bf350326be04cc9ad9b4b32534228988d6df372eb98989fabc62f4d1afb26dda4c595e7e86d7a952e4453d91efec4b452359d9d42c4a5e18924179d2993013bc9cf9a0da63ffaf27a7be3db64e1761a4f7ee5987388cef980b0ddb1ff27f398ad993c3eafa7c96290b27ba9a79959b3d7356c35a22a4bbcb10661ecea65f9273f2bee5794143ce81d45801fc8039776872b2ef2c90b1b3793ea257a6af2c723c87788de2aaf20d380e143a37b6c4d3663fde0a2e3ce054046081d18a8fa7081ce0ced872" alt="Elden Ring screenshot showing Stormveil Castle approach with stormy dark sky and golden eagle perched on battlements" width="320" height="180">
+                <div class="media-thumb-overlay"><div class="media-play-btn"><i class="fas fa-expand"></i></div></div>
+              </div>
+              <div class="media-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/1f14390c18f768c56e51d329f35ad96dea54088bafdc2094d124d3ffebcd59e5.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T104003Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=373b60a16cc090711d930405dc6590f0da29b7e0e1a32cb17b307ff44c15ee72c300d45e947fae7a2c855588076d2b8282a510e5629d92da8f704e4f4c81d5819879c9ebe326165e6918e755207936d2a619e8ea2f3e08bdf20b45aaa761c5fd52f25c592c01c64e42e0f06d511f1713694777b423a59753ab8d6db94c6ab483025f6d0f8a18bddf017088f0b4722d1518faca1398bb85e305f4cbe0c593d81934ea08983321a0bd77683f0e245c9e4a6e87c97725a04720b8c9736c2302d1e336e77e149e7029f48cd25802647c1d622312e1c80ee0a434ca38a0b35fcddfed25e9b23bc366c1ff5466af3bef02fcba5513084d84ba2a1f213992cd89930ccb" alt="Elden Ring screenshot showing the vast shimmering blue lake of Liurnia with the Academy of Raya Lucaria in the misty background" width="320" height="180">
+                <div class="media-thumb-overlay"><div class="media-play-btn"><i class="fas fa-expand"></i></div></div>
+              </div>
+              <div class="media-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/9b8dc9c1eebe428a29f1b8ad6ed513a533977c5631a7260df99165d826069902.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T104003Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b7a3e1e076c4f4fe639903e6837ea89fb5f93dea3df7fbe80533d24db426c1e09fbf20f02c0dd6c91f5b79c651078db06746ca6a435fde5c6f59593f2adc088a488c274c801c97dcad2e4b0e90858bd337282c1ef53045985dbbef9e4d97e2afd7196625ce55a02742a69e1e4057bc7a3cf3be62f77f34dfa99b83951a79c09c21196a5fa2d0cb56275fdae322b353fbeb0b9a009e22ea532b3f1559f1dcf6ca6489a6997ed6bc775cfdc5486953db566669de0c4f052f33b8dcc9f2247ac2027b30dbc23f25b6bac8a60b5b5b59f92683ecb295dec78615150ad273b9bb3cfb92611560b2160060ac98560792b0693089e5da7ad9e9503010d359b9640eb9bd" alt="Elden Ring screenshot showing the boss fight with Malenia Blade of Miquella in a beautiful field of scarlet rot flowers" width="320" height="180">
+                <div class="media-thumb-overlay"><div class="media-play-btn"><i class="fas fa-expand"></i></div></div>
+              </div>
+              <div class="media-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/8a0c7289d86a9080e6ed0b0fdca0a520a5e24e6e3f1d6d6925fe5abd4de43d04.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T104003Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=bb9ffd88257b081eae12d43b5a2963f9bb8b6840803619fe6df8158c683f01f9ee7bf532f2ec0b18673ab35ebb0f1e946f0f7ece8a66ec0ff7b0cbc70a40930d8d903683b44e67f0853474770650adeb39a1215e28e5668dc71047b2b323e752e7df82e3523bb8c4d9d71ad56c297b6f0158d64673e5ed1f36e70318e7416cbe97975bd475ea7d2c1fcf802349f16098105b2712689a37c94c01ba9c9005a3c9d301522853c32f9bd5ea5b713b9a871e1218154175e012df13eee5968416e603cf59f4179170dbd21811cd884dcb1badf8fe96cc5854b449ee8b44b3e6f507ef314ab185e2afd210bb5e6edcf70424371be43e328b91f75d8244afe1a3cc39bb" alt="Elden Ring screenshot showing the scarlet rot-infected wasteland of Caelid with blood-red sky and twisted corrupted trees" width="320" height="180">
+                <div class="media-thumb-overlay"><div class="media-play-btn"><i class="fas fa-expand"></i></div></div>
+              </div>
+              <div class="media-thumb">
+                <img src="https://storage.googleapis.com/forge-sites/d08868178e440112604a4dad5dfdca6be550ec2d118b4f388f4bf258f2eda972.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T104004Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=0210446032067bd100cc619e6c07563aeb7b9e98f2575a270a4e64cb4c40a8e01aa1b8c37a6d8e1f444a8939ff710595ca3a27ccfcdf75073845c5fe053f175de50e466e98ea3bdfc20cc8f7d27d5900b2ab7a2189174821218d2d5b50539759a429b208a564c8b4ab897fddb72dafaa72a7591c1668e332d7dc2a576db1cd9fc7b4cb9f03d2d0701cf21ea3ca2f0135367aca7f3a665729365685057074f829ae3ad370042902d4c41510f58ca7cc24eeb8a9834b29c6ab909fda24958cee452d44cb90ec5922b6af45298819884f8cf0c800a764b852e2a5378be6bfb50495bcfdd2a924e1e13b96a606d74380062ca3fe0604e17f91926dcd6528de43a659" alt="Elden Ring screenshot showing the Tarnished riding spectral steed Torrent across golden plains at sunset" width="320" height="180">
+                <div class="media-thumb-overlay"><div class="media-play-btn"><i class="fas fa-expand"></i></div></div>
+              </div>
+              <div class="media-thumb" style="position:relative;">
+                <img src="https://storage.googleapis.com/forge-sites/ad5c091782e267b821fc70a6b4b6c77a20a9da6d59e1e02f154d72f65e1598b7.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T104004Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=4ca6999ad39843ae6715aca7159ba4c66fa68e3a13c9b34979238ae40869be82c4e6983998b285c2561e2970d7f306781f69097b33c9f88ba1efc39d7928ac199fa302bdf06202d829d3571b664167e7f63b7e8f97237804d1f1fc9a5b9a4a92b41c5748977702c5f19f3afcc4c468cd9696c9059d3463fa5710506103a6ccf633ab311771c839362e1bcc35ecbd165797a6d1ebcc3a49a09c8e791d66be2d89c6dd729dd9d13a7bfedd979daced3a9fbcab3f7e57ec34f91fc3af0e0e0e37435b8bc565c8ced8b3b70679a05e2eb4e53413ab6a057270e28771e7c514befc6f514cefc69e328a82ac281c78789135974e4e53a2cb13d7ba6af993f6cf1f5c31" alt="Elden Ring screenshot showing the massive glowing golden Erdtree illuminating the entire landscape at night from a great distance" width="320" height="180">
+                <div class="media-thumb-overlay">
+                  <div class="media-play-btn" style="opacity:1; transform:scale(1); background: rgba(245,158,11,0.85);">
+                    <i class="fas fa-play" style="margin-left:2px;"></i>
+                  </div>
+                </div>
+                <div style="position:absolute; top:8px; left:8px; background: rgba(245,158,11,0.9); color:#000; font-size:9px; font-weight:800; padding:2px 8px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">Trailer</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REVIEWS TAB -->
+          <div class="tab-content" id="tab-reviews">
+            <div class="section-heading">Community Reviews</div>
+            <div class="review-card">
+              <div class="review-header">
+                <div class="reviewer-avatar" style="background: linear-gradient(135deg, #7C3AED, #5B21B6);">AK</div>
+                <div>
+                  <div class="reviewer-name">ArtoKnight</div>
+                  <div class="reviewer-date">March 12, 2022</div>
+                </div>
+                <div class="review-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+              </div>
+              <div class="review-text">A genre-defining masterpiece. FromSoftware has taken everything great about their previous titles and injected it into a world so vast and detailed that every hour brings a new discovery. The open world never feels empty — every corner hides secrets worth finding. Malenia alone is worth the price of admission.</div>
+            </div>
+            <div class="review-card">
+              <div class="review-header">
+                <div class="reviewer-avatar" style="background: linear-gradient(135deg, #F59E0B, #D97706);">SP</div>
+                <div>
+                  <div class="reviewer-name">SkywardPilgrim</div>
+                  <div class="reviewer-date">April 2, 2022</div>
+                </div>
+                <div class="review-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+              </div>
+              <div class="review-text">The collaboration with George R.R. Martin truly shines in the world-building. The lore feels ancient and layered — you could spend dozens of hours reading item descriptions and still not feel like you've scratched the surface. The combat is challenging but fair, rewarding patience and adaptability over brute force.</div>
+            </div>
+            <div class="review-card">
+              <div class="review-header">
+                <div class="reviewer-avatar" style="background: linear-gradient(135deg, #10B981, #059669);">VN</div>
+                <div>
+                  <div class="reviewer-name">VoidNomad</div>
+                  <div class="reviewer-date">June 18, 2022</div>
+                </div>
+                <div class="review-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star" style="color:rgba(255,255,255,0.15);"></i>
+                </div>
+              </div>
+              <div class="review-text">An incredible achievement that stumbles slightly in its late-game pacing. The underground areas feel less inspired compared to the surface regions, and some bosses recycle too aggressively. That said, the first 60 hours are among the best in gaming history. GOTY well deserved.</div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /center-column -->
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="right-sidebar">
+
+          <div class="info-card">
+            <div class="info-card-header">Game Info</div>
+            <div class="info-row">
+              <span class="info-row-label">Metacritic Score</span>
+              <div class="metacritic-score">96</div>
+            </div>
+            <div class="info-row">
+              <span class="info-row-label">ESRB Rating</span>
+              <span class="esrb-badge">MATURE 17+</span>
+            </div>
+            <div class="info-row">
+              <span class="info-row-label">Base Price</span>
+              <span class="price-value">$59.99</span>
+            </div>
+            <div class="info-row">
+              <span class="info-row-label">Release Date</span>
+              <span class="info-row-value">Feb 25, 2022</span>
+            </div>
+            <div class="info-row">
+              <span class="info-row-label">Developer</span>
+              <span class="info-row-value">FromSoftware</span>
+            </div>
+            <div class="info-row">
+              <span class="info-row-label">Publisher</span>
+              <span class="info-row-value">Bandai Namco</span>
+            </div>
+            <div class="info-row">
+              <span class="info-row-label">Copies Sold</span>
+              <span class="info-row-value" style="color: var(--accent-light);">20M+</span>
+            </div>
+            <div class="info-row">
+              <span class="info-row-label">DLC Available</span>
+              <span class="info-row-value" style="color: #34D399;">Yes</span>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn-primary">
+              <i class="fas fa-heart"></i>
+              Add to Favorites
+            </button>
+            <button class="btn-secondary">
+              <i class="fas fa-external-link-alt"></i>
+              Visit Official Site
+            </button>
+            <button class="btn-secondary" style="margin-bottom:0;">
+              <i class="fas fa-bookmark"></i>
+              Save to List
+            </button>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header">Awards &amp; Recognition</div>
+            <div class="award-item">
+              <div class="award-icon" style="background: rgba(245,158,11,0.15);">🏆</div>
+              <div>
+                <div class="award-text">Game of the Year</div>
+                <div class="award-year">The Game Awards 2022</div>
+              </div>
+            </div>
+            <div class="award-item">
+              <div class="award-icon" style="background: rgba(124,58,237,0.15);">🎮</div>
+              <div>
+                <div class="award-text">Best RPG</div>
+                <div class="award-year">IGN Best of 2022</div>
+              </div>
+            </div>
+            <div class="award-item">
+              <div class="award-icon" style="background: rgba(16,185,129,0.15);">⭐</div>
+              <div>
+                <div class="award-text">Best Open World</div>
+                <div class="award-year">GDC Awards 2022</div>
+              </div>
+            </div>
+            <div class="award-item">
+              <div class="award-icon" style="background: rgba(239,68,68,0.12);">🎵</div>
+              <div>
+                <div class="award-text">Best Score &amp; Music</div>
+                <div class="award-year">The Game Awards 2022</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /right-sidebar -->
+
+      </div>
+      <!-- /page-body -->
+
+    </div>
+    <!-- /content-scroll -->
+
+  </div>
+  <!-- /main-content -->
+
+</div>
+
+<script>
+  // Nav item interactivity
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  // Tab switching
+  document.querySelectorAll('.tab-item').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetTab = tab.getAttribute('data-tab');
+
+      document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      tab.classList.add('active');
+      document.getElementById('tab-' + targetTab).classList.add('active');
+    });
+  });
+
+  // Search input focus animation
+  const searchInput = document.querySelector('.search-bar input');
+  searchInput.addEventListener('focus', () => {
+    searchInput.parentElement.style.transform = 'scale(1.01)';
+  });
+  searchInput.addEventListener('blur', () => {
+    searchInput.parentElement.style.transform = 'scale(1)';
+  });
+
+  // Add to Favorites button toggle
+  const favBtn = document.querySelector('.btn-primary');
+  let isFav = false;
+  favBtn.addEventListener('click', () => {
+    isFav = !isFav;
+    if (isFav) {
+      favBtn.innerHTML = '<i class="fas fa-heart" style="color:#FDA4AF;"></i> Added to Favorites';
+      favBtn.style.background = 'rgba(124,58,237,0.5)';
+      favBtn.style.border = '1px solid rgba(124,58,237,0.8)';
+    } else {
+      favBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Favorites';
+      favBtn.style.background = '';
+      favBtn.style.border = '';
+    }
+  });
+</script>
+
+</body></html>

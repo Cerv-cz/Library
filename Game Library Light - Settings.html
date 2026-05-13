@@ -1,0 +1,1525 @@
+<!DOCTYPE html><html lang="en"><head><base href="https://forge.moonchild.ai/site/861d6244ae8b693dd19c269530b0eea1b464da36d3c995b8938e071c1dd71dbc/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameWiki – Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F5F5;
+      --card: #FFFFFF;
+      --accent: #2563EB;
+      --accent-light: #EFF6FF;
+      --accent-glow: rgba(37, 99, 235, 0.25);
+      --green: #10B981;
+      --text-primary: #111827;
+      --text-secondary: #6B7280;
+      --text-tertiary: #9CA3AF;
+      --border: #E5E7EB;
+      --border-light: #F3F4F6;
+      --sidebar-width: 240px;
+      --topbar-height: 64px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* ── LEFT SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      flex-shrink: 0;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+    }
+
+    .sidebar-logo {
+      height: var(--topbar-height);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-bottom: 1px solid var(--border);
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent), #1d4ed8);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .logo-text span {
+      color: var(--accent);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 12px;
+      overflow-y: auto;
+    }
+
+    .nav-section-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-tertiary);
+      padding: 0 8px;
+      margin-bottom: 6px;
+      margin-top: 16px;
+    }
+
+    .nav-section-label:first-child { margin-top: 0; }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: background 0.15s ease, color 0.15s ease;
+      text-decoration: none;
+      margin-bottom: 2px;
+    }
+
+    .nav-item:hover {
+      background: var(--border-light);
+      color: var(--text-primary);
+    }
+
+    .nav-item i {
+      width: 18px;
+      text-align: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .nav-item.active {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-item.active i {
+      color: var(--accent);
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      background: var(--accent);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 20px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .sidebar-footer {
+      padding: 14px 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .user-card:hover { background: var(--border-light); }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .user-info { flex: 1; min-width: 0; }
+    .user-name { font-size: 13px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .user-handle { font-size: 11px; color: var(--text-tertiary); }
+
+    /* ── MAIN WRAPPER ── */
+    .main-wrapper {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      height: var(--topbar-height);
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      gap: 16px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .topbar-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .topbar-sep {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0 14px;
+      height: 38px;
+      flex: 1;
+      max-width: 420px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      cursor: text;
+    }
+
+    .search-bar:hover { border-color: #d1d5db; }
+    .search-bar:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+    }
+
+    .search-bar i { color: var(--text-tertiary); font-size: 13px; }
+
+    .search-bar input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: var(--text-primary);
+      width: 100%;
+    }
+
+    .search-bar input::placeholder { color: var(--text-tertiary); }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      background: var(--border-light);
+      color: var(--text-primary);
+    }
+
+    .notif-dot {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 7px;
+      height: 7px;
+      background: #EF4444;
+      border-radius: 50%;
+      border: 1.5px solid white;
+    }
+
+    /* ── PAGE CONTENT ── */
+    .page-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px 28px;
+    }
+
+    .page-header {
+      margin-bottom: 28px;
+    }
+
+    .page-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.4px;
+    }
+
+    .page-subtitle {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* ── SETTINGS LAYOUT ── */
+    .settings-layout {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    /* ── SETTINGS SUB-NAV ── */
+    .settings-subnav {
+      width: 200px;
+      flex-shrink: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      position: sticky;
+      top: 28px;
+    }
+
+    .subnav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: background 0.15s ease, color 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .subnav-item:last-child { margin-bottom: 0; }
+
+    .subnav-item i {
+      width: 16px;
+      text-align: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .subnav-item:hover {
+      background: var(--border-light);
+      color: var(--text-primary);
+    }
+
+    .subnav-item.active {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ── SETTINGS PANEL ── */
+    .settings-panel {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .settings-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .section-header {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.2px;
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    /* ── THEME CARDS ── */
+    .theme-cards {
+      display: flex;
+      gap: 18px;
+    }
+
+    .theme-card {
+      flex: 1;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+      position: relative;
+    }
+
+    .theme-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    .theme-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-glow), 0 6px 24px rgba(37,99,235,0.15);
+    }
+
+    .theme-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--accent);
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      z-index: 2;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.4);
+    }
+
+    /* ── DARK THEME PREVIEW ── */
+    .theme-preview-dark {
+      background: #1a1a2e;
+      padding: 16px;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .preview-topbar-dark {
+      background: #16213e;
+      border-radius: 5px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      gap: 6px;
+    }
+
+    .preview-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .preview-dot.red { background: #ef4444; }
+    .preview-dot.yellow { background: #f59e0b; }
+    .preview-dot.green { background: #10b981; }
+
+    .preview-search-dark {
+      background: #0f3460;
+      border-radius: 4px;
+      height: 8px;
+      margin-left: auto;
+      width: 60px;
+      opacity: 0.6;
+    }
+
+    .preview-body-dark {
+      flex: 1;
+      display: flex;
+      gap: 8px;
+    }
+
+    .preview-sidebar-dark {
+      width: 38px;
+      background: #16213e;
+      border-radius: 4px;
+      padding: 6px 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .preview-nav-line-dark {
+      height: 5px;
+      background: #0f3460;
+      border-radius: 2px;
+      opacity: 0.8;
+    }
+
+    .preview-nav-line-dark.active {
+      background: #2563eb;
+      opacity: 1;
+    }
+
+    .preview-main-dark {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .preview-card-dark {
+      background: #16213e;
+      border-radius: 4px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 7px;
+      gap: 5px;
+    }
+
+    .preview-card-img-dark {
+      width: 18px;
+      height: 18px;
+      background: #0f3460;
+      border-radius: 3px;
+    }
+
+    .preview-lines-dark {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .preview-line-dark {
+      height: 4px;
+      background: #2d3748;
+      border-radius: 2px;
+    }
+
+    .preview-line-dark.short { width: 60%; }
+
+    /* ── LIGHT THEME PREVIEW ── */
+    .theme-preview-light {
+      background: #f3f4f6;
+      padding: 16px;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .preview-topbar-light {
+      background: #ffffff;
+      border-radius: 5px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      gap: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .preview-search-light {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      height: 8px;
+      margin-left: auto;
+      width: 60px;
+    }
+
+    .preview-body-light {
+      flex: 1;
+      display: flex;
+      gap: 8px;
+    }
+
+    .preview-sidebar-light {
+      width: 38px;
+      background: #ffffff;
+      border-radius: 4px;
+      padding: 6px 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .preview-nav-line-light {
+      height: 5px;
+      background: #e5e7eb;
+      border-radius: 2px;
+    }
+
+    .preview-nav-line-light.active {
+      background: #2563eb;
+    }
+
+    .preview-main-light {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .preview-card-light {
+      background: #ffffff;
+      border-radius: 4px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 7px;
+      gap: 5px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .preview-card-img-light {
+      width: 18px;
+      height: 18px;
+      background: #e5e7eb;
+      border-radius: 3px;
+    }
+
+    .preview-lines-light {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .preview-line-light {
+      height: 4px;
+      background: #e5e7eb;
+      border-radius: 2px;
+    }
+
+    .preview-line-light.short { width: 60%; }
+
+    /* ── THEME CARD FOOTER ── */
+    .theme-card-footer {
+      padding: 14px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .theme-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .theme-status {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .theme-select-btn {
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-family: 'Inter', sans-serif;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .theme-select-btn:hover {
+      background: var(--border-light);
+      border-color: #d1d5db;
+      color: var(--text-primary);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    /* ── ACCENT COLORS ── */
+    .accent-swatches {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border: 2.5px solid transparent;
+      position: relative;
+    }
+
+    .color-swatch:hover {
+      transform: scale(1.1);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .color-swatch.selected {
+      border-color: white;
+      box-shadow: 0 0 0 3px currentColor, 0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    .color-swatch i {
+      color: white;
+      font-size: 13px;
+    }
+
+    .swatch-blue { background: #2563EB; color: #2563EB; }
+    .swatch-violet { background: #7C3AED; color: #7C3AED; }
+    .swatch-rose { background: #E11D48; color: #E11D48; }
+    .swatch-amber { background: #D97706; color: #D97706; }
+    .swatch-green { background: #059669; color: #059669; }
+    .swatch-cyan { background: #0891B2; color: #0891B2; }
+
+    .accent-label-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .accent-name {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .accent-hex {
+      font-size: 11.5px;
+      color: var(--text-tertiary);
+      font-family: 'Courier New', monospace;
+      background: var(--border-light);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ── FONT SIZE SLIDER ── */
+    .font-size-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .font-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .font-label {
+      font-size: 11.5px;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    .font-label.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .slider-container {
+      flex: 1;
+    }
+
+    .font-size-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 4px;
+      background: linear-gradient(to right, var(--accent) 50%, var(--border) 50%);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .font-size-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: white;
+      border: 2.5px solid var(--accent);
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(37,99,235,0.3);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .font-size-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      box-shadow: 0 2px 8px rgba(37,99,235,0.4);
+    }
+
+    .current-size-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ── TOGGLE ── */
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+
+    .setting-row-info { flex: 1; }
+
+    .setting-row-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .setting-row-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #D1D5DB;
+      border-radius: 24px;
+      transition: background 0.2s ease;
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 3px;
+      top: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background: var(--accent);
+    }
+
+    .toggle-switch input:checked + .toggle-slider::before {
+      transform: translateX(20px);
+    }
+
+    .toggle-switch:hover .toggle-slider {
+      filter: brightness(0.95);
+    }
+
+    /* ── SAVE BUTTON ── */
+    .settings-footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      padding-top: 4px;
+    }
+
+    .btn-secondary {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 9px 20px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--border-light);
+      color: var(--text-primary);
+      border-color: #d1d5db;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 9px 22px;
+      border-radius: 8px;
+      border: none;
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.35);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      color: var(--text-tertiary);
+      margin-bottom: 10px;
+    }
+
+    .breadcrumb span { color: var(--text-secondary); font-weight: 500; }
+    .breadcrumb span:last-child { color: var(--text-primary); font-weight: 600; }
+    .breadcrumb i { font-size: 9px; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+    /* ── DENSITY ROW ── */
+    .density-options {
+      display: flex;
+      gap: 10px;
+    }
+
+    .density-opt {
+      flex: 1;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .density-opt:hover {
+      background: var(--border-light);
+      border-color: #d1d5db;
+    }
+
+    .density-opt.selected {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .density-radio {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: white;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s ease;
+    }
+
+    .density-opt.selected .density-radio {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .density-opt.selected .density-radio::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .density-text-wrap { flex: 1; }
+    .density-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .density-desc { font-size: 11.5px; color: var(--text-secondary); margin-top: 1px; }
+    .density-opt.selected .density-name { color: var(--accent); }
+
+    /* Status tag in sidebar */
+    .subnav-section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 8px 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── LEFT SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">GW</div>
+      <span class="logo-text">Game<span>Wiki</span></span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Navigation</div>
+
+      <a class="nav-item" href="#">
+        <i class="fas fa-house"></i>
+        Home
+      </a>
+      <a class="nav-item" href="#">
+        <i class="fas fa-gamepad"></i>
+        Browse Games
+        <span class="nav-badge">New</span>
+      </a>
+      <a class="nav-item" href="#">
+        <i class="fas fa-layer-group"></i>
+        Categories
+      </a>
+
+      <div class="nav-section-label">Library</div>
+
+      <a class="nav-item" href="#">
+        <i class="fas fa-heart"></i>
+        Favorites
+      </a>
+      <a class="nav-item" href="#">
+        <i class="fas fa-clock-rotate-left"></i>
+        Recently Viewed
+      </a>
+      <a class="nav-item" href="#">
+        <i class="fas fa-list"></i>
+        My Lists
+      </a>
+
+      <div class="nav-section-label">System</div>
+
+      <a class="nav-item active" href="#">
+        <i class="fas fa-gear"></i>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">Jordan Davis</div>
+          <div class="user-handle">@jordand</div>
+        </div>
+        <i class="fas fa-ellipsis" style="color: var(--text-tertiary); font-size: 13px;"></i>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN WRAPPER ── -->
+  <div class="main-wrapper">
+
+    <!-- ── TOP BAR ── -->
+    <header class="topbar">
+      <span class="topbar-title">GameWiki</span>
+      <div class="topbar-sep"></div>
+      <div class="search-bar">
+        <i class="fas fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search games, genres, developers…">
+        <span style="font-size:11px;color:var(--text-tertiary);background:var(--border-light);padding:2px 6px;border-radius:4px;font-weight:500;flex-shrink:0;">⌘K</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" title="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="icon-btn" title="Help">
+          <i class="fas fa-circle-question"></i>
+        </button>
+        <div class="user-avatar" style="width:34px;height:34px;font-size:12px;cursor:pointer;flex-shrink:0;">JD</div>
+      </div>
+    </header>
+
+    <!-- ── PAGE CONTENT ── -->
+    <main class="page-content">
+
+      <div class="page-header">
+        <div class="breadcrumb">
+          <i class="fas fa-house"></i>
+          <span>Home</span>
+          <i class="fas fa-chevron-right"></i>
+          <span>Settings</span>
+          <i class="fas fa-chevron-right"></i>
+          <span>Appearance</span>
+        </div>
+        <h1 class="page-title">Settings</h1>
+        <p class="page-subtitle">Customize your experience and manage your preferences</p>
+      </div>
+
+      <div class="settings-layout">
+
+        <!-- ── SETTINGS SUB-NAV ── -->
+        <nav class="settings-subnav">
+          <div class="subnav-item active">
+            <i class="fas fa-palette"></i>
+            Appearance
+          </div>
+          <div class="subnav-item">
+            <i class="fas fa-user-circle"></i>
+            Account
+          </div>
+          <div class="subnav-section-divider"></div>
+          <div class="subnav-item">
+            <i class="fas fa-bell"></i>
+            Notifications
+          </div>
+          <div class="subnav-item">
+            <i class="fas fa-globe"></i>
+            Language &amp; Region
+          </div>
+          <div class="subnav-section-divider"></div>
+          <div class="subnav-item">
+            <i class="fas fa-circle-info"></i>
+            About
+          </div>
+        </nav>
+
+        <!-- ── SETTINGS PANEL ── -->
+        <div class="settings-panel">
+
+          <!-- SECTION: Theme -->
+          <div class="settings-card">
+            <div class="section-header">
+              <div class="section-title">Theme</div>
+              <div class="section-desc">Choose your preferred visual theme. Changes apply instantly across all pages and components.</div>
+            </div>
+
+            <div class="theme-cards">
+
+              <!-- Dark Theme Card -->
+              <div class="theme-card" onclick="selectTheme(this, 'dark')">
+                <div class="theme-preview-dark">
+                  <div class="preview-topbar-dark">
+                    <div class="preview-dot red"></div>
+                    <div class="preview-dot yellow"></div>
+                    <div class="preview-dot green"></div>
+                    <div class="preview-search-dark"></div>
+                  </div>
+                  <div class="preview-body-dark">
+                    <div class="preview-sidebar-dark">
+                      <div class="preview-nav-line-dark active"></div>
+                      <div class="preview-nav-line-dark"></div>
+                      <div class="preview-nav-line-dark"></div>
+                      <div class="preview-nav-line-dark"></div>
+                      <div class="preview-nav-line-dark"></div>
+                    </div>
+                    <div class="preview-main-dark">
+                      <div class="preview-card-dark">
+                        <div class="preview-card-img-dark"></div>
+                        <div class="preview-lines-dark">
+                          <div class="preview-line-dark"></div>
+                          <div class="preview-line-dark short"></div>
+                        </div>
+                      </div>
+                      <div class="preview-card-dark">
+                        <div class="preview-card-img-dark"></div>
+                        <div class="preview-lines-dark">
+                          <div class="preview-line-dark"></div>
+                          <div class="preview-line-dark short"></div>
+                        </div>
+                      </div>
+                      <div class="preview-card-dark">
+                        <div class="preview-card-img-dark"></div>
+                        <div class="preview-lines-dark">
+                          <div class="preview-line-dark"></div>
+                          <div class="preview-line-dark short"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="theme-card-footer">
+                  <div>
+                    <div class="theme-label">Dark</div>
+                    <div style="font-size:12px;color:var(--text-tertiary);margin-top:2px;">Easy on the eyes</div>
+                  </div>
+                  <button class="theme-select-btn" onclick="event.stopPropagation(); selectTheme(this.closest('.theme-card'), 'dark')">Select</button>
+                </div>
+              </div>
+
+              <!-- Light Theme Card (Active) -->
+              <div class="theme-card selected" id="light-card" onclick="selectTheme(this, 'light')">
+                <div class="theme-badge">
+                  <i class="fas fa-check"></i>
+                </div>
+                <div class="theme-preview-light">
+                  <div class="preview-topbar-light">
+                    <div class="preview-dot red"></div>
+                    <div class="preview-dot yellow"></div>
+                    <div class="preview-dot green"></div>
+                    <div class="preview-search-light"></div>
+                  </div>
+                  <div class="preview-body-light">
+                    <div class="preview-sidebar-light">
+                      <div class="preview-nav-line-light active"></div>
+                      <div class="preview-nav-line-light"></div>
+                      <div class="preview-nav-line-light"></div>
+                      <div class="preview-nav-line-light"></div>
+                      <div class="preview-nav-line-light"></div>
+                    </div>
+                    <div class="preview-main-light">
+                      <div class="preview-card-light">
+                        <div class="preview-card-img-light"></div>
+                        <div class="preview-lines-light">
+                          <div class="preview-line-light"></div>
+                          <div class="preview-line-light short"></div>
+                        </div>
+                      </div>
+                      <div class="preview-card-light">
+                        <div class="preview-card-img-light"></div>
+                        <div class="preview-lines-light">
+                          <div class="preview-line-light"></div>
+                          <div class="preview-line-light short"></div>
+                        </div>
+                      </div>
+                      <div class="preview-card-light">
+                        <div class="preview-card-img-light"></div>
+                        <div class="preview-lines-light">
+                          <div class="preview-line-light"></div>
+                          <div class="preview-line-light short"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="theme-card-footer">
+                  <div>
+                    <div class="theme-label">Light</div>
+                    <div class="theme-status" style="margin-top:2px;">
+                      <i class="fas fa-circle-check" style="font-size:11px;"></i> Currently Active
+                    </div>
+                  </div>
+                  <button class="theme-select-btn" style="border-color:var(--accent);color:var(--accent);background:var(--accent-light);" onclick="event.stopPropagation();">Active</button>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Display Density -->
+            <div class="section-header" style="margin-bottom:14px;">
+              <div class="section-title">Display Density</div>
+              <div class="section-desc">Control how much content is shown on screen at once.</div>
+            </div>
+
+            <div class="density-options">
+              <div class="density-opt" onclick="selectDensity(this)">
+                <div class="density-radio"></div>
+                <div class="density-text-wrap">
+                  <div class="density-name">Compact</div>
+                  <div class="density-desc">More content, smaller spacing</div>
+                </div>
+              </div>
+              <div class="density-opt selected" onclick="selectDensity(this)">
+                <div class="density-radio"></div>
+                <div class="density-text-wrap">
+                  <div class="density-name">Default</div>
+                  <div class="density-desc">Balanced layout and spacing</div>
+                </div>
+              </div>
+              <div class="density-opt" onclick="selectDensity(this)">
+                <div class="density-radio"></div>
+                <div class="density-text-wrap">
+                  <div class="density-name">Comfortable</div>
+                  <div class="density-desc">More breathing room</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION: Accent Color -->
+          <div class="settings-card">
+            <div class="section-header">
+              <div class="section-title">Accent Color</div>
+              <div class="section-desc">Select a highlight color used across buttons, active states, and interactive elements.</div>
+            </div>
+
+            <div class="accent-swatches">
+              <div class="color-swatch swatch-blue selected" onclick="selectColor(this, '#2563EB', 'Ocean Blue')" title="Ocean Blue">
+                <i class="fas fa-check"></i>
+              </div>
+              <div class="color-swatch swatch-violet" onclick="selectColor(this, '#7C3AED', 'Royal Violet')" title="Royal Violet"></div>
+              <div class="color-swatch swatch-rose" onclick="selectColor(this, '#E11D48', 'Crimson Rose')" title="Crimson Rose"></div>
+              <div class="color-swatch swatch-amber" onclick="selectColor(this, '#D97706', 'Warm Amber')" title="Warm Amber"></div>
+              <div class="color-swatch swatch-green" onclick="selectColor(this, '#059669', 'Forest Green')" title="Forest Green"></div>
+              <div class="color-swatch swatch-cyan" onclick="selectColor(this, '#0891B2', 'Deep Cyan')" title="Deep Cyan"></div>
+            </div>
+
+            <div class="accent-label-row">
+              <div class="accent-name" id="accent-name">Ocean Blue</div>
+              <div class="accent-hex" id="accent-hex">#2563EB</div>
+            </div>
+          </div>
+
+          <!-- SECTION: Font Size -->
+          <div class="settings-card">
+            <div class="section-header" style="margin-bottom:18px;">
+              <div class="section-title">Font Size</div>
+              <div class="section-desc">Adjust the base text size for better readability. This affects all body text across the app.</div>
+            </div>
+
+            <div style="margin-bottom: 6px;">
+              <div class="font-labels">
+                <span class="font-label">Small</span>
+                <span class="font-label active" id="size-label">Normal</span>
+                <span class="font-label">Large</span>
+                <span class="font-label">X-Large</span>
+              </div>
+              <div class="font-size-row">
+                <div class="slider-container">
+                  <input type="range" class="font-size-slider" min="0" max="3" value="1" id="font-slider" oninput="updateFontSize(this.value)">
+                </div>
+                <div class="current-size-tag" id="size-tag">Normal (14px)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION: Sidebar & Layout -->
+          <div class="settings-card">
+            <div class="section-header">
+              <div class="section-title">Sidebar &amp; Layout</div>
+              <div class="section-desc">Manage the default behavior of the sidebar and layout components.</div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-row-info">
+                <div class="setting-row-label">Default Sidebar Collapse</div>
+                <div class="setting-row-desc">Automatically collapse the sidebar on smaller screens or on startup</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="sidebar-toggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="setting-row">
+              <div class="setting-row-info">
+                <div class="setting-row-label">Sticky Top Navigation</div>
+                <div class="setting-row-desc">Keep the top bar visible while scrolling through content</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="sticky-toggle" checked="">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="setting-row">
+              <div class="setting-row-info">
+                <div class="setting-row-label">Animations &amp; Transitions</div>
+                <div class="setting-row-desc">Enable smooth animations throughout the interface (disable to reduce motion)</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="anim-toggle" checked="">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- FOOTER -->
+          <div class="settings-footer">
+            <button class="btn-secondary">Reset to Defaults</button>
+            <button class="btn-primary">
+              <i class="fas fa-floppy-disk" style="font-size:13px;"></i>
+              Save Changes
+            </button>
+          </div>
+
+        </div><!-- /settings-panel -->
+      </div><!-- /settings-layout -->
+    </main>
+  </div>
+
+  <script>
+    function selectTheme(card, theme) {
+      document.querySelectorAll('.theme-card').forEach(c => {
+        c.classList.remove('selected');
+        const badge = c.querySelector('.theme-badge');
+        if (badge) badge.remove();
+        const btn = c.querySelector('.theme-select-btn');
+        if (btn) {
+          btn.textContent = 'Select';
+          btn.style.borderColor = '';
+          btn.style.color = '';
+          btn.style.background = '';
+        }
+        const status = c.querySelector('.theme-status');
+        if (status) status.remove();
+      });
+
+      card.classList.add('selected');
+
+      const badge = document.createElement('div');
+      badge.className = 'theme-badge';
+      badge.innerHTML = '<i class="fas fa-check"></i>';
+      card.appendChild(badge);
+
+      const footer = card.querySelector('.theme-card-footer > div:first-child');
+      const newStatus = document.createElement('div');
+      newStatus.className = 'theme-status';
+      newStatus.innerHTML = '<i class="fas fa-circle-check" style="font-size:11px;"></i> Currently Active';
+      newStatus.style.marginTop = '2px';
+      footer.appendChild(newStatus);
+
+      const btn = card.querySelector('.theme-select-btn');
+      if (btn) {
+        btn.textContent = 'Active';
+        btn.style.borderColor = 'var(--accent)';
+        btn.style.color = 'var(--accent)';
+        btn.style.background = 'var(--accent-light)';
+        btn.onclick = function(e) { e.stopPropagation(); };
+      }
+    }
+
+    function selectDensity(el) {
+      document.querySelectorAll('.density-opt').forEach(d => d.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function selectColor(swatch, hex, name) {
+      document.querySelectorAll('.color-swatch').forEach(s => {
+        s.classList.remove('selected');
+        s.innerHTML = '';
+      });
+      swatch.classList.add('selected');
+      swatch.innerHTML = '<i class="fas fa-check"></i>';
+      document.getElementById('accent-name').textContent = name;
+      document.getElementById('accent-hex').textContent = hex;
+    }
+
+    const sizeLabels = ['Small (12px)', 'Normal (14px)', 'Large (16px)', 'X-Large (18px)'];
+    const sizeTags = ['Small', 'Normal', 'Large', 'X-Large'];
+
+    function updateFontSize(val) {
+      const idx = parseInt(val);
+      document.getElementById('size-tag').textContent = sizeLabels[idx];
+      document.getElementById('size-label').textContent = sizeTags[idx];
+      const labels = document.querySelectorAll('.font-label');
+      labels.forEach((l, i) => l.classList.toggle('active', i === idx));
+
+      const pct = (idx / 3) * 100;
+      document.getElementById('font-slider').style.background =
+        `linear-gradient(to right, var(--accent) ${pct}%, var(--border) ${pct}%)`;
+    }
+
+    // Subnav switching
+    document.querySelectorAll('.subnav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.subnav-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+
+    // Save button feedback
+    document.querySelector('.btn-primary').addEventListener('click', function() {
+      const orig = this.innerHTML;
+      this.innerHTML = '<i class="fas fa-circle-check" style="font-size:13px;"></i> Saved!';
+      this.style.background = '#059669';
+      setTimeout(() => {
+        this.innerHTML = orig;
+        this.style.background = '';
+      }, 2000);
+    });
+  </script>
+
+</body></html>

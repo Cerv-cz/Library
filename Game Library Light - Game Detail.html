@@ -1,0 +1,1515 @@
+<!DOCTYPE html><html lang="en"><head><base href="https://forge.moonchild.ai/site/dc668f09ed0c3c95723a14372d4b4e881bb15e3bf7569f1d852b9996fc82c7d7/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hollow Knight — GamePedia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F5F5;
+      --surface: #FFFFFF;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --green: #10B981;
+      --text-primary: #111827;
+      --text-secondary: #6B7280;
+      --text-muted: #9CA3AF;
+      --border: #E5E7EB;
+      --border-light: #F3F4F6;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.05), 0 4px 6px rgba(0,0,0,0.03);
+      --radius: 8px;
+      --sidebar-width: 240px;
+      --topbar-height: 60px;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── TOP BAR ─────────────────────────────────────── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--topbar-height);
+      background: var(--surface);
+      box-shadow: 0 1px 0 var(--border), var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      z-index: 100;
+      gap: 24px;
+    }
+
+    .topbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .topbar-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .topbar-logo-icon i {
+      color: white;
+      font-size: 15px;
+    }
+
+    .topbar-logo-text {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .topbar-logo-text span {
+      color: var(--accent);
+    }
+
+    .topbar-search {
+      flex: 1;
+      max-width: 520px;
+      position: relative;
+    }
+
+    .topbar-search input {
+      width: 100%;
+      height: 36px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0 12px 0 36px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .topbar-search input::placeholder { color: var(--text-muted); }
+
+    .topbar-search input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    .topbar-search-icon {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+    }
+
+    .topbar-nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .topbar-nav a:hover { background: var(--bg); color: var(--text-primary); }
+
+    .topbar-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      margin-left: 8px;
+      border: 2px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .topbar-avatar:hover { border-color: var(--accent); }
+
+    .topbar-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── LAYOUT ─────────────────────────────────────── */
+    .layout {
+      display: flex;
+      padding-top: var(--topbar-height);
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ─────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: var(--topbar-height);
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+      padding: 20px 0;
+      z-index: 50;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .sidebar-section { margin-bottom: 24px; }
+
+    .sidebar-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      padding: 0 16px;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 0;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      position: relative;
+    }
+
+    .sidebar-item i { width: 16px; text-align: center; font-size: 13px; }
+
+    .sidebar-item:hover { background: var(--bg); color: var(--text-primary); }
+
+    .sidebar-item.active {
+      color: var(--accent);
+      background: rgba(37,99,235,0.06);
+    }
+
+    .sidebar-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 4px; bottom: 4px;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .sidebar-badge {
+      margin-left: auto;
+      background: var(--accent);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+
+    /* ── MAIN CONTENT ─────────────────────────────────── */
+    .main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 28px 32px 48px;
+      min-width: 0;
+    }
+
+    /* ── BREADCRUMB ─────────────────────────────────── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .breadcrumb a:hover { color: var(--accent); }
+
+    .breadcrumb-sep {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    .breadcrumb-current {
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* ── GAME DETAIL TWO-COLUMN ─────────────────────── */
+    .game-detail {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* ── LEFT COLUMN ─────────────────────────────────── */
+    .game-sidebar-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: sticky;
+      top: calc(var(--topbar-height) + 20px);
+    }
+
+    .game-cover {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+
+    .game-sidebar-body {
+      padding: 18px;
+    }
+
+    .metacritic-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .metacritic-badge {
+      width: 54px;
+      height: 54px;
+      border-radius: 8px;
+      background: var(--green);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .metacritic-score {
+      font-size: 22px;
+      font-weight: 900;
+      color: white;
+      line-height: 1;
+    }
+
+    .metacritic-label-small {
+      font-size: 8px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-top: 2px;
+    }
+
+    .metacritic-info { flex: 1; min-width: 0; }
+
+    .metacritic-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .metacritic-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .user-score-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .user-score-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #F59E0B;
+    }
+
+    .user-score-text {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .user-score-text strong { color: #F59E0B; font-weight: 700; }
+
+    .platforms-section {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .platforms-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .platform-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .platform-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .platform-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(37,99,235,0.05); }
+
+    .platform-chip i { font-size: 10px; }
+
+    .sidebar-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-favorite {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      width: 100%;
+      height: 38px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-favorite i { color: #EF4444; font-size: 14px; }
+
+    .btn-favorite:hover {
+      background: #FEF2F2;
+      border-color: #FCA5A5;
+      color: #DC2626;
+    }
+
+    .btn-favorite:hover i { transform: scale(1.15); }
+
+    .btn-favorite.favorited {
+      background: #FEF2F2;
+      border-color: #EF4444;
+      color: #DC2626;
+    }
+
+    .btn-site {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      width: 100%;
+      height: 38px;
+      background: var(--accent);
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-site:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    }
+
+    /* ── RIGHT COLUMN ─────────────────────────────────── */
+    .game-main {
+      min-width: 0;
+    }
+
+    .game-header-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      padding: 28px 32px 24px;
+      margin-bottom: 20px;
+    }
+
+    .game-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .game-eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(37,99,235,0.08);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .game-eyebrow-badge i { font-size: 9px; }
+
+    .award-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245,158,11,0.08);
+      color: #D97706;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .game-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .game-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .game-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tag-genre {
+      background: rgba(16,185,129,0.08);
+      color: #059669;
+      border: 1px solid rgba(16,185,129,0.2);
+    }
+
+    .tag-genre:hover { background: rgba(16,185,129,0.15); }
+
+    .tag-platform {
+      background: rgba(37,99,235,0.06);
+      color: var(--accent);
+      border: 1px solid rgba(37,99,235,0.15);
+    }
+
+    .tag-platform:hover { background: rgba(37,99,235,0.12); }
+
+    .tag-mood {
+      background: rgba(139,92,246,0.06);
+      color: #7C3AED;
+      border: 1px solid rgba(139,92,246,0.15);
+    }
+
+    .tag-mood:hover { background: rgba(139,92,246,0.12); }
+
+    .game-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .game-meta-item {
+      background: var(--surface);
+      padding: 12px 14px;
+    }
+
+    .game-meta-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .game-meta-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .game-meta-value a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .game-meta-value a:hover { text-decoration: underline; }
+
+    /* ── TABS ─────────────────────────────────────── */
+    .tabs-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .tabs-nav {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      background: var(--surface);
+      overflow-x: auto;
+    }
+
+    .tabs-nav::-webkit-scrollbar { height: 0; }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 16px 13px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .tab-btn i { font-size: 12px; }
+
+    .tab-btn:hover { color: var(--text-primary); }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .tab-content {
+      padding: 28px 32px;
+      display: none;
+    }
+
+    .tab-content.active { display: block; }
+
+    /* ── OVERVIEW CONTENT ─────────────────────────────── */
+    .overview-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 32px;
+    }
+
+    .article-body h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      margin-top: 24px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .article-body h2:first-child { margin-top: 0; }
+
+    .article-body p {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .article-body ul {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 14px;
+    }
+
+    .article-body ul li {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.6;
+      padding: 4px 0 4px 20px;
+      position: relative;
+    }
+
+    .article-body ul li::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 12px;
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .article-body .highlight-link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(37,99,235,0.3);
+      transition: border-color 0.15s;
+    }
+
+    .article-body .highlight-link:hover { border-bottom-color: var(--accent); }
+
+    .overview-aside {}
+
+    .did-you-know {
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.15);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px 16px;
+      margin-bottom: 16px;
+    }
+
+    .dyk-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 10px;
+    }
+
+    .dyk-header i {
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .dyk-header span {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+    }
+
+    .dyk-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .dyk-list li {
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.6;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(37,99,235,0.08);
+      display: flex;
+      gap: 8px;
+    }
+
+    .dyk-list li:last-child { border-bottom: none; }
+
+    .dyk-list li::before {
+      content: '→';
+      color: var(--accent);
+      flex-shrink: 0;
+      font-weight: 700;
+      font-size: 12px;
+      margin-top: 1px;
+    }
+
+    .quick-facts {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .quick-facts-header {
+      background: var(--bg);
+      padding: 10px 14px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+    }
+
+    .quick-facts-body {
+      padding: 4px 0;
+    }
+
+    .qf-row {
+      display: flex;
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .qf-row:last-child { border-bottom: none; }
+
+    .qf-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .qf-value {
+      font-size: 12px;
+      color: var(--text-primary);
+      flex: 1;
+    }
+
+    .qf-value.green { color: var(--green); font-weight: 700; }
+
+    /* ── RELATED GAMES CAROUSEL ─────────────────────── */
+    .related-section {
+      margin-top: 8px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title i { color: var(--accent); font-size: 14px; }
+
+    .section-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s;
+    }
+
+    .section-link:hover { gap: 7px; }
+
+    .related-carousel {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .related-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .related-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .related-card-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      display: block;
+    }
+
+    .related-card-body {
+      padding: 12px 12px 10px;
+    }
+
+    .related-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .related-card-genre {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .related-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .related-score {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .related-score-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .score-green { background: var(--green); }
+    .score-yellow { background: #F59E0B; }
+    .score-blue { background: var(--accent); }
+
+    .related-score-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .related-year {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .related-carousel { grid-template-columns: repeat(2, 1fr); }
+      .overview-layout { grid-template-columns: 1fr; }
+      .overview-aside { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    }
+
+    @media (max-width: 900px) {
+      .game-detail { grid-template-columns: 200px 1fr; }
+      .game-meta-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .main { margin-left: 0; padding: 20px 16px 40px; }
+      .game-detail { grid-template-columns: 1fr; }
+      .game-sidebar-card { position: static; }
+      .topbar-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <a class="topbar-logo" href="#">
+      <div class="topbar-logo-icon">
+        <i class="fas fa-gamepad"></i>
+      </div>
+      <span class="topbar-logo-text">Game<span>Pedia</span></span>
+    </a>
+
+    <div class="topbar-search">
+      <i class="fas fa-search topbar-search-icon"></i>
+      <input type="text" placeholder="Search games, developers, franchises…">
+    </div>
+
+    <nav class="topbar-nav">
+      <a href="#">Browse</a>
+      <a href="#">Top Rated</a>
+      <a href="#">New Releases</a>
+      <a href="#">Collections</a>
+    </nav>
+
+    <div class="topbar-avatar">
+      <img src="https://storage.googleapis.com/forge-sites/ca997361dc9b3693d7f26b5fbafd2eb91fdf6c22e5bfdf5af9b5ff870f1e2d91.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103436Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=32df1ffb08b39379904d1a224e894a7e306385a7b1e58c9c02b917eb92549141a2ce2e5776ab7100115a0e32e8e2d3ae7242b83a6faad92fec2b4e4c9ef77ba1c12403997717a9a40a86a1cc71bf286083d28b6a1605d16660b437bfa9ef77133f46798df2ee1146a0af5fdf657d1e031ddea81832e03a4ead32dc2d494ae04ace2a4df1c09275b4a091eba6c5daed7014f5aca74a2d3bdfe0fb50248325fc94b2fe88b7c62b23df25b910f959d827a137fb2e571bca7a90ab41d812b23a2ae416bf4f14346fdf1c6e57e976efca59cc808310a4553731e32861ad7ab9eb1e47a3c347b4a5ce3fadb10f7b11f5071775871ab1c92c4f82ca934d8d5d1e763182" alt="Gamer profile avatar photo of a young person with casual style" width="32" height="32">
+    </div>
+  </header>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Discover</div>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a class="sidebar-item active" href="#">
+          <i class="fas fa-book-open"></i> Encyclopedia
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-star"></i> Top Rated
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-fire"></i> Trending
+          <span class="sidebar-badge">New</span>
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-calendar-alt"></i> New Releases
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Browse By</div>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-tags"></i> Genres
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-desktop"></i> Platforms
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-users"></i> Developers
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-building"></i> Publishers
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-timeline"></i> By Year
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">My Library</div>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-heart"></i> Favorites
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-bookmark"></i> Wishlist
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-check-circle"></i> Played
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-clock"></i> Playing Now
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Community</div>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-message"></i> Forums
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-pen-to-square"></i> Reviews
+        </a>
+        <a class="sidebar-item" href="#">
+          <i class="fas fa-list-check"></i> Lists
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+      <!-- BREADCRUMB -->
+      <nav class="breadcrumb">
+        <a href="#">Home</a>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+        <a href="#">Encyclopedia</a>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+        <a href="#">Metroidvania</a>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+        <span class="breadcrumb-current">Hollow Knight</span>
+      </nav>
+
+      <!-- GAME DETAIL TWO-COLUMN -->
+      <div class="game-detail">
+
+        <!-- LEFT SIDEBAR -->
+        <div class="game-sidebar-card">
+          <img class="game-cover" src="https://storage.googleapis.com/forge-sites/bd87faf23b10937f0b644b65fe3226781016aad2063616dc2f9442f09884041f.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103436Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=bc6d36b4fa0c838be7967a83da477d2b1ead910d7fa042878c9baeaa28a607738fff79b57443adef701deaa5195efe1cd64802aeb54e73b1577d5e809aefbab1b75bf69eab791cb9b3b2a77fbc862e44197dbc039c04fad6ea47ac75918c444e1a4f331b15424a6fc572e4301955b379b6a002a0e03adafaf111f42d6db7ce9eb8a7c3810d4521a0b5615874bc4b0fad91651681c7c2f2f85ca0c6965e8c9a84043f908364d6ef61abc008a183dab867579ccfb865734a6a9811ff2036f16805e2d9e5fa9eab670db62d948589ab481c53b634f7845d13187b8c2345f418630dde9e44f20239c9c14f14dd7f797069fbc3e1ea80b52fa925d788f85ba5e4f86d" alt="Hollow Knight official cover art featuring the Knight, a small insect warrior in a black cloak holding a nail weapon, standing against a dark atmospheric background of a forgotten kingdom" width="260" height="347">
+
+          <div class="game-sidebar-body">
+
+            <!-- Metacritic -->
+            <div class="metacritic-section">
+              <div class="metacritic-badge">
+                <span class="metacritic-score">90</span>
+                <span class="metacritic-label-small">Metascore</span>
+              </div>
+              <div class="metacritic-info">
+                <div class="metacritic-title">Metacritic Score</div>
+                <div class="metacritic-sub">Based on 53 critic reviews</div>
+                <div class="user-score-row">
+                  <div class="user-score-dot"></div>
+                  <span class="user-score-text">User Score: <strong>9.0</strong> / 10</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Platforms -->
+            <div class="platforms-section">
+              <div class="platforms-label">Available On</div>
+              <div class="platform-chips">
+                <span class="platform-chip"><i class="fab fa-windows"></i> PC</span>
+                <span class="platform-chip"><i class="fab fa-apple"></i> macOS</span>
+                <span class="platform-chip"><i class="fab fa-linux"></i> Linux</span>
+                <span class="platform-chip"><i class="fas fa-gamepad"></i> Switch</span>
+                <span class="platform-chip"><i class="fab fa-playstation"></i> PS4</span>
+                <span class="platform-chip"><i class="fab fa-xbox"></i> Xbox</span>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="sidebar-actions">
+              <button class="btn-favorite" id="favoriteBtn" onclick="toggleFavorite()">
+                <i class="fas fa-heart" id="heartIcon"></i>
+                <span id="favoriteText">Add to Favorites</span>
+              </button>
+              <a class="btn-site" href="#">
+                <i class="fas fa-external-link-alt" style="font-size:11px;"></i>
+                Official Site
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="game-main">
+
+          <!-- Game Header -->
+          <div class="game-header-card">
+            <div class="game-eyebrow">
+              <span class="game-eyebrow-badge"><i class="fas fa-book"></i> Encyclopedia Entry</span>
+              <span class="award-badge"><i class="fas fa-trophy"></i> Indie GOTY 2017</span>
+            </div>
+            <h1 class="game-title">Hollow Knight</h1>
+            <p class="game-subtitle">An epic action-adventure through a vast underground kingdom of insects and heroes</p>
+
+            <div class="game-tags">
+              <span class="tag tag-genre">Metroidvania</span>
+              <span class="tag tag-genre">Action-Adventure</span>
+              <span class="tag tag-genre">Indie</span>
+              <span class="tag tag-platform">PC</span>
+              <span class="tag tag-platform">Nintendo Switch</span>
+              <span class="tag tag-platform">PS4/PS5</span>
+              <span class="tag tag-mood">Dark Fantasy</span>
+              <span class="tag tag-mood">Atmospheric</span>
+              <span class="tag tag-mood">Challenging</span>
+            </div>
+
+            <div class="game-meta-grid">
+              <div class="game-meta-item">
+                <div class="game-meta-label">Release Date</div>
+                <div class="game-meta-value">February 24, 2017</div>
+              </div>
+              <div class="game-meta-item">
+                <div class="game-meta-label">Developer</div>
+                <div class="game-meta-value"><a href="#">Team Cherry</a></div>
+              </div>
+              <div class="game-meta-item">
+                <div class="game-meta-label">Publisher</div>
+                <div class="game-meta-value"><a href="#">Team Cherry</a></div>
+              </div>
+              <div class="game-meta-item">
+                <div class="game-meta-label">Avg. Playtime</div>
+                <div class="game-meta-value">40–60 hrs</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="tabs-card">
+            <div class="tabs-nav" role="tablist">
+              <button class="tab-btn active" onclick="switchTab('overview', this)" role="tab">
+                <i class="fas fa-align-left"></i> Overview
+              </button>
+              <button class="tab-btn" onclick="switchTab('gameplay', this)" role="tab">
+                <i class="fas fa-sword"></i> Gameplay
+              </button>
+              <button class="tab-btn" onclick="switchTab('story', this)" role="tab">
+                <i class="fas fa-scroll"></i> Story
+              </button>
+              <button class="tab-btn" onclick="switchTab('characters', this)" role="tab">
+                <i class="fas fa-users"></i> Characters
+              </button>
+              <button class="tab-btn" onclick="switchTab('media', this)" role="tab">
+                <i class="fas fa-photo-film"></i> Media
+              </button>
+              <button class="tab-btn" onclick="switchTab('reviews', this)" role="tab">
+                <i class="fas fa-star-half-alt"></i> Reviews
+              </button>
+            </div>
+
+            <!-- OVERVIEW TAB -->
+            <div class="tab-content active" id="tab-overview">
+              <div class="overview-layout">
+                <div class="article-body">
+                  <h2>About Hollow Knight</h2>
+                  <p>
+                    <strong>Hollow Knight</strong> is a classically styled 2D action-adventure game developed and published by <a class="highlight-link" href="#">Team Cherry</a>, a small independent studio based in Adelaide, Australia. The game was funded through a Kickstarter campaign in 2014, raising over AU$57,000 — significantly surpassing its original goal — and was officially released on February 24, 2017, for Windows, macOS, and Linux, with console ports following in subsequent years.
+                  </p>
+                  <p>
+                    Set in the hauntingly beautiful ruins of <a class="highlight-link" href="#">Hallownest</a>, an ancient underground kingdom inhabited by bugs and other arthropod-like creatures, the game follows a small, silent warrior known only as the Knight as they descend into the decaying realm to uncover its forgotten history and face the growing corruption threatening what remains.
+                  </p>
+
+                  <h2>Key Features</h2>
+                  <ul>
+                    <li><strong>Vast Interconnected World:</strong> Over 40 distinct areas to explore across a sprawling underground kingdom, each with unique environments, enemies, and secrets.</li>
+                    <li><strong>Precise Combat System:</strong> Engage in tight, nail-based melee combat enhanced with magical Spells, unlockable abilities, and a wide range of customizable Charms.</li>
+                    <li><strong>Deep Lore &amp; Narrative:</strong> A rich storyline delivered through environmental storytelling, NPC dialogue, and collectible Hunter's Journal entries rather than traditional cutscenes.</li>
+                    <li><strong>Hand-Drawn Art:</strong> Every frame of animation and background is hand-drawn, creating a cohesive dark fairytale aesthetic with remarkable detail.</li>
+                    <li><strong>Original Soundtrack:</strong> A sweeping orchestral score by <a class="highlight-link" href="#">Christopher Larkin</a> that dynamically underscores exploration, boss encounters, and quiet moments of discovery.</li>
+                    <li><strong>Free Content Updates:</strong> Four major free DLC packs were released post-launch, adding new areas, bosses, quests, and the beloved Godmaster content.</li>
+                    <li><strong>Optional Difficulty Depths:</strong> A rich optional endgame for veterans including the Pantheons of the Abyss, Hall of Gods, and Godhome challenges.</li>
+                  </ul>
+
+                  <h2>Development &amp; Reception</h2>
+                  <p>
+                    Team Cherry — consisting of William Pellen, Ari Gibson, and David Kazi — began development of Hollow Knight after a prototype was created during a 72-hour game jam. The full game took approximately two and a half years to complete. Upon release, it was met with widespread critical acclaim and became a benchmark title in the <a class="highlight-link" href="#">Metroidvania</a> genre, often cited alongside <em>Castlevania: Symphony of the Night</em> as one of the definitive entries in the category.
+                  </p>
+                  <p>
+                    The game achieved remarkable commercial success for an independent title, selling over 3 million copies within its first two years and accumulating over 90 on Metacritic across multiple platforms. It is frequently regarded as one of the greatest indie games ever made, notable for the extraordinary amount of content offered at a price point far below typical AAA releases.
+                  </p>
+                </div>
+
+                <div class="overview-aside">
+                  <!-- Did You Know -->
+                  <div class="did-you-know">
+                    <div class="dyk-header">
+                      <i class="fas fa-lightbulb"></i>
+                      <span>Did You Know?</span>
+                    </div>
+                    <ul class="dyk-list">
+                      <li>The entire game was developed by a core team of just three people over roughly two and a half years.</li>
+                      <li>Hollow Knight was originally Kickstarted for AU$57,138 — less than the price of a single AAA game's marketing budget.</li>
+                      <li>The game's map system must be purchased from a cartographer NPC named Cornifer, whom you track by following humming sounds.</li>
+                      <li>All four major DLC expansions — including Hidden Dreams and Godmaster — were released completely free of charge.</li>
+                      <li>The sequel, Hollow Knight: Silksong, features Hornet (from this game) as the playable protagonist.</li>
+                    </ul>
+                  </div>
+
+                  <!-- Quick Facts -->
+                  <div class="quick-facts">
+                    <div class="quick-facts-header">Quick Facts</div>
+                    <div class="quick-facts-body">
+                      <div class="qf-row">
+                        <span class="qf-label">Engine</span>
+                        <span class="qf-value">Unity</span>
+                      </div>
+                      <div class="qf-row">
+                        <span class="qf-label">Genre</span>
+                        <span class="qf-value">Metroidvania</span>
+                      </div>
+                      <div class="qf-row">
+                        <span class="qf-label">Mode</span>
+                        <span class="qf-value">Single-player</span>
+                      </div>
+                      <div class="qf-row">
+                        <span class="qf-label">Bosses</span>
+                        <span class="qf-value">47 (inc. DLC)</span>
+                      </div>
+                      <div class="qf-row">
+                        <span class="qf-label">Areas</span>
+                        <span class="qf-value">43 distinct zones</span>
+                      </div>
+                      <div class="qf-row">
+                        <span class="qf-label">Charms</span>
+                        <span class="qf-value">45 collectibles</span>
+                      </div>
+                      <div class="qf-row">
+                        <span class="qf-label">DLC Packs</span>
+                        <span class="qf-value">4 (all free)</span>
+                      </div>
+                      <div class="qf-row">
+                        <span class="qf-label">Metacritic</span>
+                        <span class="qf-value green">90 / 100</span>
+                      </div>
+                      <div class="qf-row">
+                        <span class="qf-label">Sales</span>
+                        <span class="qf-value">3M+ copies</span>
+                      </div>
+                      <div class="qf-row">
+                        <span class="qf-label">Composer</span>
+                        <span class="qf-value">Christopher Larkin</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- GAMEPLAY TAB -->
+            <div class="tab-content" id="tab-gameplay">
+              <div class="article-body">
+                <h2>Gameplay Mechanics</h2>
+                <p>Hollow Knight features precise 2D combat, platforming, and exploration in a Metroidvania framework. Players navigate the vast underground world of Hallownest by unlocking movement abilities, finding shortcuts, and purchasing maps from the wandering cartographer Cornifer.</p>
+                <h2>Combat</h2>
+                <p>The primary weapon is the Nail, a sword-like implement used for melee attacks. Soul energy harvested in combat powers both healing and magical Spells. Players can equip Charm Notches with collectible Charms to customize their playstyle significantly.</p>
+                <h2>Exploration</h2>
+                <p>The game world is densely packed with hidden rooms, optional bosses, lore tablets, and NPCs. A dream nail mechanic allows the Knight to enter memories, battle dream bosses, and uncover hidden story elements.</p>
+              </div>
+            </div>
+
+            <!-- STORY TAB -->
+            <div class="tab-content" id="tab-story">
+              <div class="article-body">
+                <h2>Narrative Overview</h2>
+                <p>The story of Hollow Knight unfolds across the ruined kingdom of Hallownest, once a thriving civilization now gripped by a plague called the Infection — an ancient, malevolent force tied to the Radiance, a moth deity forgotten by the bugs of Hallownest.</p>
+                <h2>The Hollow Knight</h2>
+                <p>The Pale King, ruler of Hallownest, created a vessel — the Hollow Knight — to contain the Infection. However, the vessel was not truly hollow, and the Infection began to leak once more. The player character, another vessel, descends to confront this contained darkness.</p>
+                <h2>Multiple Endings</h2>
+                <p>The game features three distinct endings, ranging from continuing the cycle of containment to confronting the Radiance directly in a final boss battle unlocked through the DLC content, culminating in a sacrifice and dream-world confrontation.</p>
+              </div>
+            </div>
+
+            <!-- CHARACTERS TAB -->
+            <div class="tab-content" id="tab-characters">
+              <div class="article-body">
+                <h2>Main Characters</h2>
+                <ul>
+                  <li><strong>The Knight:</strong> The silent, shell-like protagonist descended from the Abyss — a Vessel born to be hollow.</li>
+                  <li><strong>Hornet:</strong> A fierce, nimble warrior and daughter of the Pale King who tests the Knight's resolve and serves as a recurring foil.</li>
+                  <li><strong>The Pale King:</strong> Hallownest's ruler, whose ambitions and desperate experiments set the story in motion.</li>
+                  <li><strong>Quirrel:</strong> A wandering scholar whose gentle journey mirrors the Knight's own, culminating in a quiet, poignant farewell.</li>
+                  <li><strong>Grimm:</strong> Leader of the Grimm Troupe, a mysterious theatrical cult summoned to complete the ritual of the Nightmare Flame.</li>
+                  <li><strong>Zote the Mighty:</strong> A boastful, self-proclaimed warrior who provides both comic relief and a recurring rescue side quest.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- MEDIA TAB -->
+            <div class="tab-content" id="tab-media">
+              <div class="article-body">
+                <h2>Screenshots &amp; Art</h2>
+                <p>A selection of official screenshots and promotional artwork is displayed below. All media is property of Team Cherry.</p>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px;">
+                <img src="https://storage.googleapis.com/forge-sites/05d9e68e4565ddd193a711f009212a2f24dcf1b4c2533b15c30ab905eef6cc23.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103436Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b6eaab502ce22fe31bed5a91697b7926f150771d36daedbaba260cbb6358eef5a40ce9a2be470ea8f3563bb11fc4ef491abc857107c7022ccdcc01204a5706ef86f17bc0deba381f9f8f00f31883edcb477e5c07dfb64c81a9ea5ea4aa0fdd74cbf0d5740b94a1dd1b597d2ca8cbbd2f8be803abbec88cfffcb3d11856f80082e0a2c2d09a438bbd7eceb1fbaf6fcfc121e670dbda56b77e6930084132a08d572565b166a4ae0f5aedc858324ec3bb7ec7a3c3e35f75c435d295f3a6952fc5bf28bac12eb81bcf0e5e74956f5e231296ec29b57dbec670baefa06d511af2bde2f787496164a2c2c00d5897d8c2509bf81bc620f75c460df216c0073d19367b8c" alt="Hollow Knight screenshot showing the City of Tears area with rain falling through towering gothic architecture and glowing windows in a dark blue atmosphere" width="300" height="190" style="width:100%;height:auto;border-radius:6px;border:1px solid var(--border);">
+                <img src="https://storage.googleapis.com/forge-sites/ef9903a74ef56eb0dc73ff4fa540272a4a63a2dc8dfdb47a121cd3c2da535f52.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103437Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=1001182bd0e05eac5646de20e8ecdde2d6aa95971da2744fe80a6a60e16bb6ed83218b2c5f667bfee77a43181f89d3d8491edea84b1ca18656b88853ffd9ba9e0389abcad6d950ca2525b49836c615455e750b4e99e47d59d047105bcc7fa898ee992f933fb706e8ca6035fc42dc63d8f5f58f8ae8ae82e732bad974c9b3a5027f5e310b3f7b96995594e603741f20b069032447565d209ddb8ce6ad915e617c6d0e6ec103d85aa593eee979cba8852f774cac745513e20a10400908c3760d790465eac6a056827bca17bd9af81a30d0f9f1d2126334ef590c37c29f64ee8d3927d142a06e08b05ded92e22e4942ef6e0c1f74fbc39a03bb37aa821e827c2056" alt="Hollow Knight gameplay screenshot of the Forgotten Crossroads area with the Knight battling insects in a cavern with mushrooms and ancient stone ruins" width="300" height="190" style="width:100%;height:auto;border-radius:6px;border:1px solid var(--border);">
+                <img src="https://storage.googleapis.com/forge-sites/8800aa6a3b65dc210f215fe97b3dddeb173acc8a5470379648e1e8cc4aea40d4.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103437Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=16b230363ceee896c57def0657dafece417a40590eff63c3453bcbee455e709050573940394cfd7b513f99ec886e20fdb473486b8192dcf88707d1c4efebbd29acc2cc885a5cff5a99db2297ecf8c7c8564788bb25d83db86f43f56c9a924a73876cdc46c33ec5e7c35b8f156929bc624f2acfd52d222931a3d07cfeb4b9e4442d368bfdf1a4d2987d43851cf2335b93a62615e6c20b47d621ef4e95bfdb35f937586b0d7f4298e954a657b529145d74ec440ff839bd3ce4567364cc27238a2e0bd3481e7261f59ae202c967b560877978167966d1cddb89f84377850b60629591dfbc70a3e5fc245482c12d241c575b60cfa18d97f6265739fbda6cd69cce0c" alt="Hollow Knight screenshot of the lush Greenpath area filled with glowing green vegetation, praying mantis enemies, and glowing pools of acid in a verdant underground environment" width="300" height="190" style="width:100%;height:auto;border-radius:6px;border:1px solid var(--border);">
+              </div>
+            </div>
+
+            <!-- REVIEWS TAB -->
+            <div class="tab-content" id="tab-reviews">
+              <div class="article-body">
+                <h2>Critical Reception</h2>
+                <p>Hollow Knight was universally acclaimed by critics, earning a Metacritic score of 90 and an OpenCritic "Mighty" rating. Reviewers praised its world design, combat, art direction, and extraordinary value proposition.</p>
+                <h2>Notable Reviews</h2>
+                <ul>
+                  <li><strong>PC Gamer (92/100):</strong> "A gorgeous, sprawling, hauntingly atmospheric Metroidvania that excels in almost every dimension."</li>
+                  <li><strong>IGN (9.4/10):</strong> "One of the best Metroidvania games ever made, with incredible world design and deeply rewarding exploration."</li>
+                  <li><strong>Eurogamer (Essential):</strong> "An astonishing achievement for a three-person team — a game that feels handcrafted at every turn."</li>
+                  <li><strong>GameSpot (9/10):</strong> "Hollow Knight earns its place among the greats of the genre with confidence and conviction."</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- RELATED GAMES -->
+          <div class="related-section">
+            <div class="section-header">
+              <h3 class="section-title">
+                <i class="fas fa-layer-group"></i>
+                Similar Games You Might Enjoy
+              </h3>
+              <a class="section-link" href="#">
+                View all <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+
+            <div class="related-carousel">
+
+              <a class="related-card" href="#">
+                <img class="related-card-img" src="https://storage.googleapis.com/forge-sites/abb703ac8acfd1456e2c1d3b4f8b7037eec26eb9d0a2ef87045156dbf0ea34d7.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103437Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=0825e0459e2e559263ba831090deeaa0a0312bd96fa3b47e42ece550c94cf78df9da2b4e291bd1b33791d7a325b5a5d9c8d588b3fbc024f616b2ce0e25728433f7c894e2b259f68fffb8416e7eb90b0176f18d276cc5f4e24c9cf44e743ae8cb4f2ecb220b72c475d7211b4377349f6bb27afcfe26b359c573b12e22ceca6305986bc189248d13ef8ff5325962c340f3369ffc7b6eed7fb0613340f0d6055f814d2f22bd0bd19e3a785c4b48eb9983c1c7387578528523e8f146c03d3dcca7f6728c362e820babaea991c62fa4e9f274abc178b59095fd0487de2ad7e5561f1b3d26b8366e1074adc7057ec4c096b8b4d8c0fa9f9dcbf7e18cf90c88feee7c86" alt="Ori and the Blind Forest gameplay screenshot showing the luminous white spirit character Ori running through a magical glowing forest with vibrant colors" width="280" height="175">
+                <div class="related-card-body">
+                  <div class="related-card-title">Ori and the Blind Forest</div>
+                  <div class="related-card-genre">Metroidvania · Platformer</div>
+                  <div class="related-card-footer">
+                    <div class="related-score">
+                      <div class="related-score-badge score-green">88</div>
+                      <span class="related-score-label">Metascore</span>
+                    </div>
+                    <span class="related-year">2015</span>
+                  </div>
+                </div>
+              </a>
+
+              <a class="related-card" href="#">
+                <img class="related-card-img" src="https://storage.googleapis.com/forge-sites/556f51e13561629dcf864ac952d7bfdb7dfb13313d0f2985a49be3a2a9ae256e.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103437Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=2814ce0de19b38a0de4c6de7ca917239cfae7e1637501668fe6874d1f699e40caadbce2444110d6df50abf1bfb749677f8f2411a7f5ed5d770460f47be60d14ec8360400e3734578a2e33b4cdd585f87e38ee4690b76d815baf41842089b2a4dcc30b8624a19f2578c1d714a23087d313ad0dc3d1f2681d6cffdd5dc7944ebfdebd378d5d7f31333ece7aaad101eeebc9fc9c5bcf708283b4afc91cdb578705ff3dcbb19fed09d8dafb17a6c2dd7d090876494f24fe391fd4de98b04f05a4f0f9e4596b5b406288205a6f26148f1dfb85e034faa5bb5fbad03259ec72aca44b85010f4236400e0046a4c9c8962ff46bf2abddce7ba7e2346519ee7b0393dd237" alt="Celeste game screenshot showing the pixel art protagonist Madeline climbing a vibrant pastel-colored mountain with precise platforming mechanics" width="280" height="175">
+                <div class="related-card-body">
+                  <div class="related-card-title">Celeste</div>
+                  <div class="related-card-genre">Precision Platformer · Indie</div>
+                  <div class="related-card-footer">
+                    <div class="related-score">
+                      <div class="related-score-badge score-green">94</div>
+                      <span class="related-score-label">Metascore</span>
+                    </div>
+                    <span class="related-year">2018</span>
+                  </div>
+                </div>
+              </a>
+
+              <a class="related-card" href="#">
+                <img class="related-card-img" src="https://storage.googleapis.com/forge-sites/904bcb92324e0cb44a9c44329768cb9ae27502466f5228952ef0665e5c5e42de.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103437Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=4954746251df4560df6c1ae338cbd3d2635fd02e6a9f5f933bcdb68d2a0563518394d109194e20efb63b9e926f6715d12e9a89a25c0763a64cb6bfb83b6cbfccd4fb30a9f450ae79df16ddfe9d08e7c56412d1a2cf1839784cf40ba81e9bec61a6f86f676451b2e8a093452a22a54e1db638c906241220add139f09ca06e5dcc20b1b9ecc63d27e46d4d43a405fbcf7dbbcab673bbe3a124050eb56d1e1cf20b4e8dcbaf07b8a6cf09e7c1dce3d7f4708645c0452e035e74ef1ab7874addae50eb1a16d8c3cecf67dd8c9a39a0bc6897b36d72011acc90a0715cbf738d6a8821c6da5dca52a387636459332e1faa336d50f1098c4afa23a18272ec6b66a8d590" alt="Dead Cells roguelike action game screenshot showing the headless protagonist fighting enemies in a dark medieval dungeon with fluid combat animations" width="280" height="175">
+                <div class="related-card-body">
+                  <div class="related-card-title">Dead Cells</div>
+                  <div class="related-card-genre">Roguelike · Metroidvania</div>
+                  <div class="related-card-footer">
+                    <div class="related-score">
+                      <div class="related-score-badge score-green">89</div>
+                      <span class="related-score-label">Metascore</span>
+                    </div>
+                    <span class="related-year">2018</span>
+                  </div>
+                </div>
+              </a>
+
+              <a class="related-card" href="#">
+                <img class="related-card-img" src="https://storage.googleapis.com/forge-sites/7356d453f480af831da9ee66ec4ec58e7c5d3d26bf36a6f9c53f688e2914d40a.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20260513%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20260513T103437Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=ab93d003c9415a28d315859454f3f4c16e7bed09f68905d83761daf55fd9e2c8f226567ff21bbe2dfc6f976634d4fe23f064191b9f653645d0fb39dcc356c3b9acfa24364ce99c9bb744285a839451308ed0c0e39375363e5577d14292b2fda44e619a29f37fcd56429fcdf767e50f155815c7245413912908d0e7bbc17aa80f65ec5a320f578eafb07f9aa63175560e90bcecfe64d232984d1770167299f36e236693bf7b0458ed2bb3e8b4c710b6414ae135df502aae9b88fe45b6092e509bbbbb8c3a4062354bfb644b9dff9d5a46530e90e8be8c19b583fdef10a7097d78067dd9ec5ff54616e601fa9b03d081f507354daea274fdf13b351686c5f0e476" alt="Blasphemous dark action platformer game screenshot showing the Penitent One character in dark gothic Spanish-inspired religious architecture with atmospheric lighting" width="280" height="175">
+                <div class="related-card-body">
+                  <div class="related-card-title">Blasphemous</div>
+                  <div class="related-card-genre">Action Platformer · Dark Fantasy</div>
+                  <div class="related-card-footer">
+                    <div class="related-score">
+                      <div class="related-score-badge score-yellow">80</div>
+                      <span class="related-score-label">Metascore</span>
+                    </div>
+                    <span class="related-year">2019</span>
+                  </div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+        <!-- /right column -->
+
+      </div>
+      <!-- /game-detail -->
+
+    </main>
+  </div>
+
+  <script>
+    // Tab switching
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    // Favorite toggle
+    let isFavorited = false;
+    function toggleFavorite() {
+      isFavorited = !isFavorited;
+      const btn = document.getElementById('favoriteBtn');
+      const icon = document.getElementById('heartIcon');
+      const text = document.getElementById('favoriteText');
+      if (isFavorited) {
+        btn.classList.add('favorited');
+        icon.classList.remove('fa-heart');
+        icon.classList.add('fa-heart');
+        icon.style.setProperty('--fa-primary-color', '#ef4444');
+        text.textContent = 'Saved to Favorites';
+        icon.className = 'fas fa-heart';
+      } else {
+        btn.classList.remove('favorited');
+        text.textContent = 'Add to Favorites';
+        icon.className = 'fas fa-heart';
+      }
+    }
+  </script>
+
+</body></html>
